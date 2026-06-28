@@ -8,7 +8,7 @@
 
 S-Lab, Nanyang Technological University
 
-[![AnyBokeh Framework](./figures/framework.pdf)]
+[![AnyBokeh Framework](framework.pdf)]
 
 </div>
 
