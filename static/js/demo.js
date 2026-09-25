@@ -12,14 +12,9 @@
     { id: '36_f20', source: 'f/20', focus: ['focus1', 'focus2'] },
     { id: '72_f22', source: 'f/22', focus: ['focus1', 'focus2'] },
     { id: '86_f22', source: 'f/22', focus: ['focus2'] },
-    { id: '109_f14', source: 'f/14', focus: ['focus2', 'focus3'] },
-    { id: '109_f16', source: 'f/16', focus: ['focus3'] },
     { id: '157_f9.0', source: 'f/9.0', focus: ['focus1'] },
     { id: '165_f16', source: 'f/16', focus: ['focus1'] },
     { id: '168_f6.3', source: 'f/6.3', focus: ['focus3'] },
-    { id: '63_f13_may', source: 'f/13', focus: ['focus1', 'focus2'] },
-    { id: '71_f10_may', source: 'f/10', focus: ['focus1', 'focus3'] },
-    { id: '119_f22_may', source: 'f/22', focus: ['focus1', 'focus2'] },
   ];
 
   const REVIEW = new URLSearchParams(location.search).has('review');
