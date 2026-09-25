@@ -180,10 +180,6 @@ img {
   margin-top: 1rem;
 }
 
-.demo {
-  margin-bottom: 1rem;
-}
-
 .demo-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
