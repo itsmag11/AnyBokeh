@@ -719,7 +719,7 @@ img {
 
 .cmp {
   --pos: 50%;
-  max-width: 800px;
+  max-width: 940px;
   margin: 0 auto;
 }
 
@@ -767,23 +767,62 @@ img {
   pointer-events: none;
 }
 
-.cmp .demo-control {
-  flex-direction: column;
-  gap: 0.5rem;
+.cmp-body {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2.25rem;
+  align-items: center;
 }
 
-.cmp .demo-control .buttons {
-  justify-content: center;
+.cmp-tasks,
+.cmp .demo-scenes {
+  margin-left: calc(180px + 2.25rem);
+}
+
+.cmp-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.cmp-methods {
+  display: flex;
+  flex-direction: column;
   gap: 0.4rem;
 }
 
-.cmp .demo-control .buttons .button {
-  margin: 0;
-  border-radius: 999px;
+.cmp-method {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  background: #fff;
+  color: #555;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.85rem;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.cmp-method:hover {
+  border-color: #b5b5b5;
+  color: #363636;
+}
+
+.cmp-method.is-active {
+  border-color: #363636;
+  background: #363636;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
   .cmp-tasks { grid-template-columns: 1fr; }
+  .cmp-body { grid-template-columns: 1fr; gap: 1rem; }
+  .cmp-side { order: 1; align-items: center; }
+  .cmp-methods { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .cmp-tasks,
+  .cmp .demo-scenes { margin-left: 0; }
 }
 
 .caption {

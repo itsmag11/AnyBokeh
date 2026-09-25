@@ -99,7 +99,7 @@
     methodGroup.innerHTML = '';
     task.methods.forEach(([m, label]) => {
       const b = document.createElement('button');
-      b.className = 'button';
+      b.className = 'cmp-method';
       b.dataset.method = m;
       b.textContent = label;
       b.onclick = () => { state.method = m; render(); };
