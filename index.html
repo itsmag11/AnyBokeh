@@ -21,10 +21,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=18">
+  <link rel="stylesheet" href="static/css/index.css?v=19">
   <script defer src="static/js/demo.js?v=6"></script>
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
+  <script defer src="static/js/compare.js?v=1"></script>
+  <script defer src="static/js/fingerprint.js?v=1"></script>
 </head>
 <body>
 
@@ -183,6 +185,55 @@
         </div>
       </div>
     </div>
+
+    <h3 class="title is-4 has-text-centered results-subsection">Play with the Optical Fingerprint</h3>
+    <p class="has-text-centered section-subtitle">
+      Click the image to choose a new focus point and drag the aperture slider. The target CoC map and the
+      CoC–disparity line update live following
+      <i>CoC</i><sub>tgt</sub> = <i>r</i><sub>a</sub><i>κ</i><sub>src</sub>(<i>D</i><sub>focus</sub> − <i>D</i>).
+    </p>
+
+    <div class="fp" id="fp">
+      <div class="fp-pair">
+        <div class="fp-viewer">
+          <img class="fp-source" alt="Source image" draggable="false">
+          <span class="demo-label">Source (f/1.4)</span>
+          <span class="fp-marker"></span>
+        </div>
+        <div class="fp-viewer">
+          <canvas class="fp-map"></canvas>
+          <span class="demo-label fp-map-label"></span>
+          <span class="fp-marker"></span>
+        </div>
+      </div>
+
+      <div class="fp-bottom">
+        <div class="fp-plot-wrap">
+          <canvas class="fp-plot"></canvas>
+          <div class="fp-legend">
+            <span><i class="fp-swatch is-source"></i>Source, slope <i>κ</i><sub>src</sub></span>
+            <span><i class="fp-swatch"></i>Target, slope <i>r</i><sub>a</sub><i>κ</i><sub>src</sub></span>
+          </div>
+        </div>
+        <div class="fp-panel">
+          <label class="fp-slider">
+            <span class="demo-control-title">Target aperture</span>
+            <span class="fp-aperture-value" id="fp-aperture-value"></span>
+            <input type="range" id="fp-aperture" min="0" max="1" step="0.001" value="0" aria-label="Target aperture">
+          </label>
+          <div class="fp-colorbar">
+            <span>near</span><div class="fp-colorbar-gradient"></div><span>far</span>
+          </div>
+          <table class="fp-readout">
+            <tr><td><i>κ</i><sub>src</sub></td><td id="fp-ksrc"></td></tr>
+            <tr><td><i>r</i><sub>a</sub> = <i>N</i><sub>src</sub>/<i>N</i><sub>tgt</sub></td><td id="fp-ra"></td></tr>
+            <tr><td><i>κ</i><sub>tgt</sub></td><td id="fp-ktgt"></td></tr>
+          </table>
+          <div class="fp-scenes" id="fp-scenes"></div>
+          <p class="fp-note">Source CoC and disparity are ground truth from our UnrealBokeh dataset.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -230,6 +281,35 @@
       </div>
 
       <div class="stage1-scenes" id="stage1-scenes"></div>
+    </div>
+
+    <h3 class="title is-4 has-text-centered results-subsection">One Model, Every Bokeh Task</h3>
+    <p class="has-text-centered section-subtitle">
+      The same AnyBokeh model handles any-to-any editing, bokeh rendering from all-in-focus inputs, and defocus
+      deblurring. Drag the slider to compare our result with the input, baselines, and ground truth.
+    </p>
+
+    <div class="cmp" id="cmp">
+      <div class="cmp-tasks" id="cmp-tasks"></div>
+
+      <div class="compare cmp-viewer">
+        <img class="compare-base" alt="AnyBokeh result">
+        <img class="compare-top" alt="Comparison image">
+        <span class="demo-label compare-label-left"></span>
+        <span class="demo-label compare-label-right">AnyBokeh (Ours)</span>
+        <span class="cmp-setting" id="cmp-setting"></span>
+        <div class="compare-handle"><span></span></div>
+        <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
+      </div>
+
+      <div class="demo-controls">
+        <div class="demo-control">
+          <span class="demo-control-title">Compare with</span>
+          <div class="buttons are-small" id="cmp-methods"></div>
+        </div>
+      </div>
+
+      <div class="demo-scenes" id="cmp-scenes"></div>
     </div>
   </div>
 </section>
