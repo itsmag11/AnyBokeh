@@ -20,7 +20,7 @@
   const focusGroup = document.getElementById('demo-focus');
   const sceneGroup = document.getElementById('demo-scenes');
 
-  const src = (scene, focus, aperture) => `${ROOT}/${scene.id}/${focus}_${aperture}.jpg`;
+  const src = (scene, focus, aperture) => `${ROOT}/${scene.id}/${focus}_${aperture}.jpg?v=2`;
 
   function preload(scene) {
     scene.focus.forEach((f) =>
