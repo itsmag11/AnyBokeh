@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=25">
+  <link rel="stylesheet" href="static/css/index.css?v=26">
   <script defer src="static/js/demo.js?v=6"></script>
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
@@ -125,8 +125,9 @@
   <div class="bokeh-layer" aria-hidden="true">
     <span class="orb" style="--x: 3%;  --y: 10%; --s: 220px; --c: 233, 78, 119;  --dx: 40px;  --dy: 30px;  --t: 13s; --d: 0s;"></span>
     <span class="orb" style="--x: 93%; --y: 6%;  --s: 120px; --c: 245, 166, 35;  --dx: -30px; --dy: 30px;  --t: 11s; --d: -3s;"></span>
-    <span class="orb" style="--x: 98%; --y: 50%; --s: 240px; --c: 123, 92, 214;  --dx: -40px; --dy: -30px; --t: 14s; --d: -5s;"></span>
-    <span class="orb" style="--x: 2%;  --y: 90%; --s: 180px; --c: 128, 203, 196; --dx: 40px;  --dy: -30px; --t: 12s; --d: -7s;"></span>
+    <span class="orb" style="--x: 98%; --y: 36%; --s: 240px; --c: 123, 92, 214;  --dx: -40px; --dy: -30px; --t: 14s; --d: -5s;"></span>
+    <span class="orb" style="--x: 2%;  --y: 58%; --s: 180px; --c: 128, 203, 196; --dx: 40px;  --dy: -30px; --t: 12s; --d: -7s;"></span>
+    <span class="orb" style="--x: 97%; --y: 88%; --s: 150px; --c: 240, 98, 146;  --dx: -30px; --dy: -30px; --t: 10s; --d: -2s;"></span>
   </div>
   <div class="container is-max-desktop">
     <p class="eyebrow">Interactive Demo</p>
@@ -199,6 +200,51 @@
       <div class="demo-scenes" id="cmp-scenes"></div>
     </div>
   </div>
+
+  <div class="container is-max-desktop showcase-part" id="blur-state">
+    <p class="eyebrow">Blur State Estimation</p>
+    <h2 class="title is-3 has-text-centered">Reading the Blur State of Any Input</h2>
+    <p class="has-text-centered section-subtitle">
+      Stage 1 predicts the source CoC and scene disparity directly from the input, whether it is shallow or
+      deep depth-of-field. Drag the slider to compare the input with its predictions.
+    </p>
+
+    <div class="stage1" id="stage1">
+      <div class="stage1-pair">
+        <div class="compare">
+          <img class="compare-base" alt="Predicted map">
+          <img class="compare-top" alt="Input image">
+          <span class="demo-label compare-label-left"></span>
+          <span class="demo-label compare-label-right"></span>
+          <div class="compare-handle"><span></span></div>
+          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
+        </div>
+        <div class="compare">
+          <img class="compare-base" alt="Predicted map">
+          <img class="compare-top" alt="Input image">
+          <span class="demo-label compare-label-left"></span>
+          <span class="demo-label compare-label-right"></span>
+          <div class="compare-handle"><span></span></div>
+          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="demo-control">
+          <span class="demo-control-title">Map</span>
+          <div class="buttons has-addons" id="stage1-maps">
+            <button class="button" data-map="coc">CoC</button>
+            <button class="button" data-map="disp">Disparity</button>
+          </div>
+        </div>
+        <div class="colorbar">
+          <span>0.0</span><div class="colorbar-gradient"></div><span>1.0</span>
+        </div>
+      </div>
+
+      <div class="stage1-scenes" id="stage1-scenes"></div>
+    </div>
+  </div>
 </section>
 
 <section class="section" id="method-section">
@@ -244,49 +290,7 @@
       </div>
     </div>
 
-    <h3 class="subsection-title"><span class="subsection-step">1</span>Reading the Blur State of Any Input</h3>
-    <p class="has-text-centered section-subtitle">
-      Stage 1 predicts the source CoC and scene disparity directly from the input, whether it is shallow or
-      deep depth-of-field. Drag the slider to compare the input with its predictions.
-    </p>
-
-    <div class="stage1" id="stage1">
-      <div class="stage1-pair">
-        <div class="compare">
-          <img class="compare-base" alt="Predicted map">
-          <img class="compare-top" alt="Input image">
-          <span class="demo-label compare-label-left"></span>
-          <span class="demo-label compare-label-right"></span>
-          <div class="compare-handle"><span></span></div>
-          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
-        </div>
-        <div class="compare">
-          <img class="compare-base" alt="Predicted map">
-          <img class="compare-top" alt="Input image">
-          <span class="demo-label compare-label-left"></span>
-          <span class="demo-label compare-label-right"></span>
-          <div class="compare-handle"><span></span></div>
-          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
-        </div>
-      </div>
-
-      <div class="demo-controls">
-        <div class="demo-control">
-          <span class="demo-control-title">Map</span>
-          <div class="buttons has-addons" id="stage1-maps">
-            <button class="button" data-map="coc">CoC</button>
-            <button class="button" data-map="disp">Disparity</button>
-          </div>
-        </div>
-        <div class="colorbar">
-          <span>0.0</span><div class="colorbar-gradient"></div><span>1.0</span>
-        </div>
-      </div>
-
-      <div class="stage1-scenes" id="stage1-scenes"></div>
-    </div>
-
-    <h3 class="subsection-title"><span class="subsection-step">2</span>Play with the Optical Fingerprint</h3>
+    <h3 class="subsection-title">Play with the Optical Fingerprint</h3>
     <p class="has-text-centered section-subtitle">
       Click the image to choose a new focus point and drag the aperture slider. The target CoC map and the
       CoC–disparity line update live following

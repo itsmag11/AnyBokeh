@@ -846,27 +846,12 @@ html {
 }
 
 .subsection-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
   margin: 5rem 0 1.5rem;
+  text-align: center;
   font-family: 'Google Sans', sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: #363636;
-}
-
-.subsection-step {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.9rem;
-  height: 1.9rem;
-  border-radius: 50%;
-  background: #363636;
-  color: #fff;
-  font-size: 1rem;
 }
 
 .section-tint .method-tab,
