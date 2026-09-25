@@ -14,7 +14,6 @@
     { id: '86_f22', source: 'f/22', focus: ['focus2'] },
     { id: '157_f9.0', source: 'f/9.0', focus: ['focus1'] },
     { id: '165_f16', source: 'f/16', focus: ['focus1'] },
-    { id: '168_f6.3', source: 'f/6.3', focus: ['focus3'] },
   ];
 
   const REVIEW = new URLSearchParams(location.search).has('review');
