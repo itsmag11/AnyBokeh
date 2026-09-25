@@ -774,11 +774,6 @@ img {
   align-items: center;
 }
 
-.cmp-tasks,
-.cmp .demo-scenes {
-  margin-left: calc(180px + 2.25rem);
-}
-
 .cmp-side {
   display: flex;
   flex-direction: column;
@@ -821,8 +816,6 @@ img {
   .cmp-body { grid-template-columns: 1fr; gap: 1rem; }
   .cmp-side { order: 1; align-items: center; }
   .cmp-methods { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-  .cmp-tasks,
-  .cmp .demo-scenes { margin-left: 0; }
 }
 
 .caption {
