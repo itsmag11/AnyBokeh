@@ -12,6 +12,8 @@
 
   const state = { scene: SCENES[0], focus: SCENES[0].focus[0], aperture: 'f2' };
 
+  const inputImg = document.getElementById('demo-input');
+  const inputLabel = document.getElementById('demo-input-label');
   const img = document.getElementById('demo-image');
   const label = document.getElementById('demo-label');
   const apertureGroup = document.getElementById('demo-apertures');
@@ -30,20 +32,22 @@
       el.classList.toggle('is-active', el.dataset[attr] === value));
   }
 
+  function swap(el, next) {
+    if (el.src.endsWith(next)) return;
+    el.classList.add('is-fading');
+    const loader = new Image();
+    loader.onload = () => {
+      el.src = next;
+      el.classList.remove('is-fading');
+    };
+    loader.src = next;
+  }
+
   function render() {
-    const next = src(state.scene, state.focus, state.aperture);
-    if (!img.src.endsWith(next)) {
-      img.classList.add('is-fading');
-      const loader = new Image();
-      loader.onload = () => {
-        img.src = next;
-        img.classList.remove('is-fading');
-      };
-      loader.src = next;
-    }
-    label.textContent = state.aperture === 'input'
-      ? `Input (${state.scene.source})`
-      : 'f/' + state.aperture.slice(1);
+    swap(inputImg, src(state.scene, state.focus, 'input'));
+    swap(img, src(state.scene, state.focus, state.aperture));
+    inputLabel.textContent = `Input (${state.scene.source})`;
+    label.textContent = 'AnyBokeh · f/' + state.aperture.slice(1);
 
     setActive(apertureGroup, 'aperture', state.aperture);
     setActive(sceneGroup, 'scene', state.scene.id);

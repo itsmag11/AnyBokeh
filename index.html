@@ -21,8 +21,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=3">
-  <script defer src="static/js/demo.js?v=1"></script>
+  <link rel="stylesheet" href="static/css/index.css?v=7">
+  <script defer src="static/js/demo.js?v=2"></script>
 </head>
 <body>
 
@@ -70,33 +70,42 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">
+      Arbitrary Focus Point, Arbitrary Aperture
+    </h2>
+    <p class="has-text-centered section-subtitle">
+      Given a single photo with any source optical state, <b>AnyBokeh</b> refocuses on any chosen point
+      and re-renders the bokeh at any target aperture.
+    </p>
     <div class="demo" id="demo">
-      <div class="demo-viewer">
-        <img id="demo-image" src="static/images/demo/63/focus1_f2.jpg" alt="AnyBokeh demo result">
-        <span class="demo-label" id="demo-label">f/2</span>
+      <div class="demo-pair">
+        <div class="demo-viewer">
+          <img id="demo-input" src="static/images/demo/63/focus1_input.jpg" alt="Input image">
+          <span class="demo-label" id="demo-input-label">Input</span>
+        </div>
+        <div class="demo-viewer">
+          <img id="demo-image" src="static/images/demo/63/focus1_f2.jpg" alt="AnyBokeh result">
+          <span class="demo-label" id="demo-label">f/2</span>
+        </div>
       </div>
 
       <div class="demo-controls">
         <div class="demo-control">
           <span class="demo-control-title">Aperture</span>
           <div class="buttons has-addons demo-apertures" id="demo-apertures">
-            <button class="button" data-aperture="input">Input</button>
             <button class="button" data-aperture="f11">f/11</button>
             <button class="button" data-aperture="f4">f/4</button>
             <button class="button" data-aperture="f2">f/2</button>
           </div>
         </div>
         <div class="demo-control">
-          <span class="demo-control-title">Focus</span>
+          <span class="demo-control-title">Focus Point</span>
           <div class="buttons has-addons" id="demo-focus"></div>
         </div>
       </div>
 
       <div class="demo-scenes" id="demo-scenes"></div>
     </div>
-    <p class="has-text-centered caption">
-      <b>AnyBokeh</b> edits bokeh from an arbitrary source optical state to any target focus and aperture setting.
-    </p>
   </div>
 </section>
 

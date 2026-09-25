@@ -113,8 +113,25 @@ img {
   margin: 0 auto 1rem;
 }
 
+.section-subtitle {
+  max-width: 720px;
+  margin: -0.75rem auto 1.5rem;
+  color: #555;
+  text-wrap: balance;
+}
+
 .demo {
   margin-bottom: 1rem;
+}
+
+.demo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .demo-pair { grid-template-columns: 1fr; }
 }
 
 .demo-viewer {
@@ -190,7 +207,7 @@ img {
 }
 
 .demo-thumb {
-  width: 96px;
+  width: 80px;
   padding: 0;
   border: 3px solid transparent;
   border-radius: 8px;
