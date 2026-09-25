@@ -171,9 +171,9 @@
               present and the scene geometry behind it.</p>
           </div>
           <div class="method-caption">
-            <p><b>Target CoC:</b> Signed CoC is linear in disparity, and its slope
-              <i>κ</i><sub>src</sub> is the source's optical fingerprint. Scaling it by the aperture change and
-              refocusing at the target disparity yields the target CoC, with no EXIF or calibration needed.</p>
+            <p><b>Target CoC:</b> Signed CoC is linear in disparity, with slope <i>κ</i><sub>src</sub>
+              as the optical fingerprint. Scaling it by the aperture ratio and shifting the in-focus plane to
+              the chosen point gives the target CoC, without the need for test-time calibration.</p>
           </div>
           <div class="method-caption">
             <p><b>Stage 2:</b> A dual-CoC-conditioned editor takes the source image together with the source
