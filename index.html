@@ -21,8 +21,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=9">
+  <link rel="stylesheet" href="static/css/index.css?v=10">
   <script defer src="static/js/demo.js?v=3"></script>
+  <script defer src="static/js/method.js?v=1"></script>
 </head>
 <body>
 
@@ -148,9 +149,38 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Method</h2>
-    <img src="static/images/framework.jpg" alt="AnyBokeh framework">
-    <div class="content has-text-justified">
-      <p><!-- TODO: method description --></p>
+    <div class="method" id="method">
+      <div class="method-tabs">
+        <button class="method-tab" data-step="0"><span class="method-step">1</span>Stage 1: Source CoC &amp; Disparity<i class="method-progress"></i></button>
+        <button class="method-tab" data-step="1"><span class="method-step">2</span>Target CoC Calculation<i class="method-progress"></i></button>
+        <button class="method-tab" data-step="2"><span class="method-step">3</span>Stage 2: CoC-Conditioned Editing<i class="method-progress"></i></button>
+      </div>
+
+      <div class="method-figure">
+        <img src="static/images/framework.jpg" alt="AnyBokeh framework">
+        <div class="method-mask" style="left: 0; width: 34.66%;"></div>
+        <div class="method-mask" style="left: 34.66%; width: 35.9%;"></div>
+        <div class="method-mask" style="left: 70.56%; width: 29.44%;"></div>
+      </div>
+
+      <div class="method-captions">
+        <div class="method-caption">
+          <p><b>Stage 1:</b> Predict source CoC and scene disparity directly from the input image,
+            regardless of its bokeh state.</p>
+        </div>
+        <div class="method-caption">
+          <p><b>Target Calculation:</b> Transfer the extracted optical fingerprint to synthesize the
+            desired target CoC.</p>
+        </div>
+        <div class="method-caption">
+          <p><b>Stage 2:</b> A dual-CoC-conditioned editor combines the source image, source CoC, and target CoC.</p>
+          <div class="method-note">
+            <p class="method-note-title">The Relative Blur Transition</p>
+            <p><b>Source CoC</b> tells the model what blur exists. <b>Target CoC</b> tells it what is desired.
+              Together, they dictate whether to deblur, preserve, or add bokeh.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

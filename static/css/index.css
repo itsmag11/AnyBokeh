@@ -291,6 +291,137 @@ img {
   opacity: 1;
 }
 
+.method-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.method-tab {
+  position: relative;
+  overflow: hidden;
+  padding: 0.6rem 0.75rem 0.7rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #888;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.method-tab:hover {
+  color: #363636;
+}
+
+.method-tab.is-active {
+  border-color: #363636;
+  background: #fff;
+  color: #363636;
+  font-weight: 600;
+}
+
+.method-step {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: #ddd;
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  text-align: center;
+}
+
+.method-tab.is-active .method-step {
+  background: #363636;
+}
+
+.method-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, #f5a623, #e94e77, #7b5cd6);
+}
+
+.method-tab.is-active .method-progress {
+  animation: method-progress var(--method-duration, 7s) linear forwards;
+}
+
+.method.is-paused .method-tab.is-active .method-progress {
+  animation-play-state: paused;
+}
+
+@keyframes method-progress {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+.method-figure {
+  position: relative;
+}
+
+.method-figure img {
+  margin: 0;
+}
+
+.method-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.method-mask.is-dimmed {
+  opacity: 0.82;
+}
+
+.method-captions {
+  display: grid;
+  max-width: 760px;
+  margin: 1.25rem auto 0;
+}
+
+.method-caption {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+.method-caption.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.method-note {
+  margin-top: 0.9rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  background: #e3f4dc;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.method-note-title {
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .method-tabs { grid-template-columns: 1fr; }
+}
+
 .caption {
   font-size: 1rem;
   color: #555;
