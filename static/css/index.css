@@ -106,6 +106,35 @@ body {
   margin: 0.25rem;
 }
 
+.publication-links .is-soon {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.soon-tag {
+  margin-left: 0.4rem;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.closing {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.closing-title {
+  margin-bottom: 0.5rem !important;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  color: #363636 !important;
+}
+
 img {
   display: block;
   width: 100%;
