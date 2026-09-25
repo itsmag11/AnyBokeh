@@ -5,7 +5,6 @@
   const tabs = root.querySelectorAll('.method-tab');
   const masks = root.querySelectorAll('.method-mask');
   const captions = root.querySelectorAll('.method-caption');
-
   let step = 0;
   let timer = null;
   let paused = false;
@@ -32,8 +31,7 @@
     if (!paused && visible) timer = setTimeout(() => show((step + 1) % tabs.length), DURATION);
   }
 
-  root.style.setProperty('--method-duration', DURATION + 'ms');
-  tabs.forEach((t, k) => { t.onclick = () => show(k); });
+  root.style.setProperty('--method-duration', DURATION + 'ms');  tabs.forEach((t, k) => { t.onclick = () => show(k); });
   root.addEventListener('mouseenter', () => { paused = true; schedule(); });
   root.addEventListener('mouseleave', () => { paused = false; show(step); });
 

@@ -365,7 +365,8 @@ img {
   to   { width: 100%; }
 }
 
-.method-figure {
+.method-figure,
+.method-canvas {
   position: relative;
 }
 
@@ -407,18 +408,8 @@ img {
   visibility: visible;
 }
 
-.method-note {
-  margin-top: 0.9rem;
-  padding: 0.9rem 1.2rem;
-  border-radius: 12px;
-  background: #e3f4dc;
-  font-size: 1rem;
-  text-align: left;
-}
-
-.method-note-title {
-  font-weight: 700;
-  margin-bottom: 0.35rem;
+@media (max-width: 768px) {
+  .method-caption { font-size: 1rem; }
 }
 
 @media (max-width: 768px) {

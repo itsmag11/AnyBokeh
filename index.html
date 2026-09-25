@@ -21,9 +21,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=14">
+  <link rel="stylesheet" href="static/css/index.css?v=18">
   <script defer src="static/js/demo.js?v=6"></script>
-  <script defer src="static/js/method.js?v=1"></script>
+  <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
 </head>
 <body>
@@ -157,27 +157,28 @@
       </div>
 
       <div class="method-figure">
-        <img src="static/images/framework.jpg" alt="AnyBokeh framework">
-        <div class="method-mask" style="left: 0; width: 34.66%;"></div>
-        <div class="method-mask" style="left: 34.66%; width: 35.9%;"></div>
-        <div class="method-mask" style="left: 70.56%; width: 29.44%;"></div>
-      </div>
+        <div class="method-canvas">
+          <img src="static/images/framework.jpg" alt="AnyBokeh framework">
+          <div class="method-mask" style="left: 0; width: 34.66%;"></div>
+          <div class="method-mask" style="left: 34.66%; width: 35.9%;"></div>
+          <div class="method-mask" style="left: 70.56%; width: 29.44%;"></div>
+        </div>
 
-      <div class="method-captions">
-        <div class="method-caption">
-          <p><b>Stage 1:</b> Predict source CoC and scene disparity directly from the input image,
-            regardless of its bokeh state.</p>
-        </div>
-        <div class="method-caption">
-          <p><b>Target Calculation:</b> Transfer the extracted optical fingerprint to synthesize the
-            desired target CoC.</p>
-        </div>
-        <div class="method-caption">
-          <p><b>Stage 2:</b> A dual-CoC-conditioned editor combines the source image, source CoC, and target CoC.</p>
-          <div class="method-note">
-            <p class="method-note-title">The Relative Blur Transition</p>
-            <p><b>Source CoC</b> tells the model what blur exists. <b>Target CoC</b> tells it what is desired.
-              Together, they dictate whether to deblur, preserve, or add bokeh.</p>
+        <div class="method-captions">
+          <div class="method-caption">
+            <p><b>Stage 1:</b> From a single image in any bokeh state, a generative predictor jointly
+              estimates the signed source CoC map and the disparity map, recovering both the blur already
+              present and the scene geometry behind it.</p>
+          </div>
+          <div class="method-caption">
+            <p><b>Target CoC:</b> Signed CoC is linear in disparity, and its slope
+              <i>κ</i><sub>src</sub> is the source's optical fingerprint. Scaling it by the aperture change and
+              refocusing at the target disparity yields the target CoC, with no EXIF or calibration needed.</p>
+          </div>
+          <div class="method-caption">
+            <p><b>Stage 2:</b> A dual-CoC-conditioned editor takes the source image together with the source
+              and target CoC maps. Their relative blur transition tells it, region by region, whether to
+              deblur, preserve, or add bokeh.</p>
           </div>
         </div>
       </div>
