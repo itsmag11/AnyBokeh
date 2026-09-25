@@ -1,0 +1,53 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.publication-title,
+.publication-subtitle {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-subtitle {
+  margin-top: 0.5rem;
+}
+
+.publication-authors {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors a {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+  text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-links {
+  margin-top: 1.5rem;
+}
+
+.publication-links .button {
+  margin: 0.25rem;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1rem;
+}
+
+.caption {
+  font-size: 1rem;
+  color: #555;
+}
+
+.footer {
+  padding: 2rem 1.5rem;
+  font-size: 0.9rem;
+}
