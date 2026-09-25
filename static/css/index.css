@@ -27,6 +27,14 @@ body {
   display: inline-block;
 }
 
+.publication-venue {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #8e44ad;
+  margin-top: 0.75rem;
+}
+
 .publication-links {
   margin-top: 1.5rem;
 }
