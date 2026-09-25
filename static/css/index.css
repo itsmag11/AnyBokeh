@@ -113,6 +113,107 @@ img {
   margin: 0 auto 1rem;
 }
 
+.demo {
+  margin-bottom: 1rem;
+}
+
+.demo-viewer {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  background: #f3f3f3;
+}
+
+.demo-viewer img {
+  margin: 0;
+  transition: opacity 0.25s ease;
+}
+
+.demo-viewer img.is-fading {
+  opacity: 0.6;
+}
+
+.demo-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.95rem;
+}
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 2.5rem;
+  margin-top: 1rem;
+}
+
+.demo-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.demo-control .buttons {
+  margin-bottom: 0;
+}
+
+.demo-control .buttons .button {
+  margin-bottom: 0;
+}
+
+.demo-control-title {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  color: #555;
+}
+
+.demo-controls .button.is-active {
+  background: #363636;
+  border-color: #363636;
+  color: #fff;
+  z-index: 2;
+}
+
+.demo-scenes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.demo-thumb {
+  width: 96px;
+  padding: 0;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  opacity: 0.65;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.demo-thumb img {
+  margin: 0;
+}
+
+.demo-thumb:hover {
+  opacity: 1;
+}
+
+.demo-thumb.is-active {
+  border-color: #7b5cd6;
+  opacity: 1;
+}
+
 .caption {
   font-size: 1rem;
   color: #555;
