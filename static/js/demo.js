@@ -1,14 +1,28 @@
 (function () {
   const ROOT = 'static/images/demo';
 
-  // `source` is the f-number of the input photo.
+  // `source` is the f-number of the input photo; `id` is the image folder name.
   const SCENES = [
-    { id: '63', source: 'f/13', focus: ['focus1', 'focus2'] },
-    { id: '71', source: 'f/10', focus: ['focus1', 'focus3'] },
-    { id: '119', source: 'f/22', focus: ['focus1', 'focus2'] },
-    { id: '51', source: 'f/2.0', focus: ['focus2'] },
-    { id: '127', source: 'f/5.0', focus: ['focus2'] },
+    { id: '63_f13', source: 'f/13', focus: ['focus1', 'focus2'] },
+    { id: '71_f10', source: 'f/10', focus: ['focus1', 'focus2', 'focus3'] },
+    { id: '119_f22', source: 'f/22', focus: ['focus1', 'focus2', 'focus3'] },
+    { id: '119_f4.5', source: 'f/4.5', focus: ['focus1'] },
+    { id: '51_f2.0', source: 'f/2.0', focus: ['focus1', 'focus2'] },
+    { id: '127_f5.0', source: 'f/5.0', focus: ['focus2'] },
+    { id: '36_f20', source: 'f/20', focus: ['focus1', 'focus2'] },
+    { id: '72_f22', source: 'f/22', focus: ['focus1', 'focus2'] },
+    { id: '86_f22', source: 'f/22', focus: ['focus2'] },
+    { id: '109_f14', source: 'f/14', focus: ['focus2', 'focus3'] },
+    { id: '109_f16', source: 'f/16', focus: ['focus3'] },
+    { id: '157_f9.0', source: 'f/9.0', focus: ['focus1'] },
+    { id: '165_f16', source: 'f/16', focus: ['focus1'] },
+    { id: '168_f6.3', source: 'f/6.3', focus: ['focus3'] },
+    { id: '63_f13_may', source: 'f/13', focus: ['focus1', 'focus2'] },
+    { id: '71_f10_may', source: 'f/10', focus: ['focus1', 'focus3'] },
+    { id: '119_f22_may', source: 'f/22', focus: ['focus1', 'focus2'] },
   ];
+
+  const REVIEW = new URLSearchParams(location.search).has('review');
 
   const state = { scene: SCENES[0], focus: SCENES[0].focus[0], aperture: 'f2' };
 
@@ -20,7 +34,7 @@
   const focusGroup = document.getElementById('demo-focus');
   const sceneGroup = document.getElementById('demo-scenes');
 
-  const src = (scene, focus, aperture) => `${ROOT}/${scene.id}/${focus}_${aperture}.jpg?v=2`;
+  const src = (scene, focus, aperture) => `${ROOT}/${scene.id}/${focus}_${aperture}.jpg?v=3`;
 
   function preload(scene) {
     scene.focus.forEach((f) =>
@@ -72,6 +86,9 @@
     thumb.className = 'demo-thumb';
     thumb.dataset.scene = scene.id;
     thumb.innerHTML = `<img src="${src(scene, scene.focus[0], 'input')}" alt="Scene ${scene.id}" loading="lazy">`;
+    if (REVIEW) {
+      thumb.insertAdjacentHTML('beforeend', `<span class="demo-thumb-tag">${scene.id}</span>`);
+    }
     thumb.onclick = () => {
       state.scene = scene;
       state.focus = scene.focus[0];

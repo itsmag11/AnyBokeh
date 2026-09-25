@@ -266,8 +266,15 @@ img {
   margin-top: 1rem;
 }
 
+.demo-thumb-tag {
+  display: block;
+  font-size: 0.65rem;
+  color: #555;
+  background: #fff;
+}
+
 .demo-thumb {
-  width: 80px;
+  width: 72px;
   padding: 0;
   border: 3px solid transparent;
   border-radius: 8px;
