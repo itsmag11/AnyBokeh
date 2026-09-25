@@ -713,8 +713,174 @@ img {
   .fp-bottom { grid-template-columns: 1fr; }
 }
 
-.results-subsection {
-  margin-top: 4rem;
+html {
+  scroll-behavior: smooth;
+}
+
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.topnav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 960px;
+  height: 52px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.topnav-brand {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #f5a623 0%, #e94e77 45%, #7b5cd6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.topnav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.topnav-links a {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.topnav-links a:hover,
+.topnav-links a.is-active {
+  color: #363636;
+}
+
+.topnav-links a.is-active {
+  font-weight: 600;
+}
+
+.topnav-icon {
+  font-size: 1.15rem;
+}
+
+@media (max-width: 768px) {
+  .topnav-links { gap: 0.9rem; }
+  .topnav-links a { font-size: 0.85rem; }
+  .topnav-brand { display: none; }
+  .topnav-inner { justify-content: center; }
+}
+
+#demo-section,
+#method-section {
+  position: relative;
+  padding: 5.5rem 1.5rem;
+  scroll-margin-top: 52px;
+}
+
+#BibTeX {
+  padding-top: 4.5rem;
+  scroll-margin-top: 52px;
+}
+
+.eyebrow {
+  margin-bottom: 0.5rem;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #f5a623, #e94e77, #7b5cd6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-tint {
+  background: linear-gradient(180deg, #f8f5fd 0%, #f5f7fc 100%);
+}
+
+#demo-section {
+  overflow: hidden;
+}
+
+#demo-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.showcase-part {
+  margin-top: 6.5rem;
+  scroll-margin-top: 80px;
+}
+
+#BibTeX pre {
+  background: #fff;
+  border: 1px solid #ece8f5;
+  border-radius: 10px;
+}
+
+#demo-section .orb {
+  opacity: 0.5;
+}
+
+#demo-section .demo-controls .button {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+#demo-section .demo-controls .button.is-active {
+  background: #363636;
+}
+
+.subsection-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 5rem 0 1.5rem;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #363636;
+}
+
+.subsection-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: #363636;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.section-tint .method-tab,
+.section-tint .cmp-task {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.section-tint .method-tab.is-active {
+  background: #fff;
+}
+
+.section-tint .method-figure img {
+  border-radius: 10px;
+  background: #fff;
 }
 
 .cmp {

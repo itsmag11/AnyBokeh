@@ -21,14 +21,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=22">
+  <link rel="stylesheet" href="static/css/index.css?v=25">
   <script defer src="static/js/demo.js?v=6"></script>
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
   <script defer src="static/js/compare.js?v=2"></script>
   <script defer src="static/js/fingerprint.js?v=1"></script>
+  <script defer src="static/js/nav.js?v=1"></script>
 </head>
 <body>
+
+<nav class="topnav" id="topnav">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="#">AnyBokeh</a>
+    <div class="topnav-links">
+      <a href="#demo-section">Demo</a>
+      <a href="#comparisons">Comparisons</a>
+      <a href="#method-section">Method</a>
+      <a href="#BibTeX">BibTeX</a>
+      <a class="topnav-icon" href="https://github.com/itsmag11/AnyBokeh" target="_blank" aria-label="Code"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</nav>
 
 <section class="hero hero-bokeh">
   <div class="bokeh-layer" aria-hidden="true">
@@ -107,8 +121,15 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section section-tint" id="demo-section">
+  <div class="bokeh-layer" aria-hidden="true">
+    <span class="orb" style="--x: 3%;  --y: 10%; --s: 220px; --c: 233, 78, 119;  --dx: 40px;  --dy: 30px;  --t: 13s; --d: 0s;"></span>
+    <span class="orb" style="--x: 93%; --y: 6%;  --s: 120px; --c: 245, 166, 35;  --dx: -30px; --dy: 30px;  --t: 11s; --d: -3s;"></span>
+    <span class="orb" style="--x: 98%; --y: 50%; --s: 240px; --c: 123, 92, 214;  --dx: -40px; --dy: -30px; --t: 14s; --d: -5s;"></span>
+    <span class="orb" style="--x: 2%;  --y: 90%; --s: 180px; --c: 128, 203, 196; --dx: 40px;  --dy: -30px; --t: 12s; --d: -7s;"></span>
+  </div>
   <div class="container is-max-desktop">
+    <p class="eyebrow">Interactive Demo</p>
     <h2 class="title is-3 has-text-centered">
       Arbitrary Focus Point, Arbitrary Aperture
     </h2>
@@ -146,11 +167,48 @@
       <div class="demo-scenes" id="demo-scenes"></div>
     </div>
   </div>
+
+  <div class="container is-max-desktop showcase-part" id="comparisons">
+    <p class="eyebrow">Comparisons</p>
+    <h2 class="title is-3 has-text-centered">One Model, Every Bokeh Task</h2>
+    <p class="has-text-centered section-subtitle">
+      The same AnyBokeh model handles any-to-any editing, bokeh rendering from all-in-focus inputs, and defocus
+      deblurring. Drag the slider to compare our result with the input, baselines, and ground truth.
+    </p>
+
+    <div class="cmp" id="cmp">
+      <div class="cmp-tasks" id="cmp-tasks"></div>
+
+      <div class="cmp-body">
+        <div class="cmp-side">
+          <span class="demo-control-title">Compare with</span>
+          <div class="cmp-methods" id="cmp-methods"></div>
+        </div>
+
+        <div class="compare cmp-viewer">
+          <img class="compare-base" alt="AnyBokeh result">
+          <img class="compare-top" alt="Comparison image">
+          <span class="demo-label compare-label-left"></span>
+          <span class="demo-label compare-label-right">AnyBokeh (Ours)</span>
+          <span class="cmp-setting" id="cmp-setting"></span>
+          <div class="compare-handle"><span></span></div>
+          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
+        </div>
+      </div>
+
+      <div class="demo-scenes" id="cmp-scenes"></div>
+    </div>
+  </div>
 </section>
 
-<section class="section">
+<section class="section" id="method-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Method</h2>
+    <p class="eyebrow">Method</p>
+    <h2 class="title is-3 has-text-centered">How AnyBokeh Works</h2>
+    <p class="has-text-centered section-subtitle">
+      Read the blur already in the photo, transfer its optical fingerprint to the target setting, then edit
+      relative to it.
+    </p>
     <div class="method" id="method">
       <div class="method-tabs">
         <button class="method-tab" data-step="0"><span class="method-step">1</span>Stage 1: Source CoC &amp; Disparity<i class="method-progress"></i></button>
@@ -186,7 +244,49 @@
       </div>
     </div>
 
-    <h3 class="title is-4 has-text-centered results-subsection">Play with the Optical Fingerprint</h3>
+    <h3 class="subsection-title"><span class="subsection-step">1</span>Reading the Blur State of Any Input</h3>
+    <p class="has-text-centered section-subtitle">
+      Stage 1 predicts the source CoC and scene disparity directly from the input, whether it is shallow or
+      deep depth-of-field. Drag the slider to compare the input with its predictions.
+    </p>
+
+    <div class="stage1" id="stage1">
+      <div class="stage1-pair">
+        <div class="compare">
+          <img class="compare-base" alt="Predicted map">
+          <img class="compare-top" alt="Input image">
+          <span class="demo-label compare-label-left"></span>
+          <span class="demo-label compare-label-right"></span>
+          <div class="compare-handle"><span></span></div>
+          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
+        </div>
+        <div class="compare">
+          <img class="compare-base" alt="Predicted map">
+          <img class="compare-top" alt="Input image">
+          <span class="demo-label compare-label-left"></span>
+          <span class="demo-label compare-label-right"></span>
+          <div class="compare-handle"><span></span></div>
+          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="demo-control">
+          <span class="demo-control-title">Map</span>
+          <div class="buttons has-addons" id="stage1-maps">
+            <button class="button" data-map="coc">CoC</button>
+            <button class="button" data-map="disp">Disparity</button>
+          </div>
+        </div>
+        <div class="colorbar">
+          <span>0.0</span><div class="colorbar-gradient"></div><span>1.0</span>
+        </div>
+      </div>
+
+      <div class="stage1-scenes" id="stage1-scenes"></div>
+    </div>
+
+    <h3 class="subsection-title"><span class="subsection-step">2</span>Play with the Optical Fingerprint</h3>
     <p class="has-text-centered section-subtitle">
       Click the image to choose a new focus point and drag the aperture slider. The target CoC map and the
       CoC–disparity line update live following
@@ -237,86 +337,9 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Results</h2>
-
-    <h3 class="title is-4 has-text-centered">Reading the Blur State of Any Input</h3>
-    <p class="has-text-centered section-subtitle">
-      Stage 1 predicts the source CoC and scene disparity directly from the input, whether it is shallow or
-      deep depth-of-field. Drag the slider to compare the input with its predictions.
-    </p>
-
-    <div class="stage1" id="stage1">
-      <div class="stage1-pair">
-        <div class="compare">
-          <img class="compare-base" alt="Predicted map">
-          <img class="compare-top" alt="Input image">
-          <span class="demo-label compare-label-left"></span>
-          <span class="demo-label compare-label-right"></span>
-          <div class="compare-handle"><span></span></div>
-          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
-        </div>
-        <div class="compare">
-          <img class="compare-base" alt="Predicted map">
-          <img class="compare-top" alt="Input image">
-          <span class="demo-label compare-label-left"></span>
-          <span class="demo-label compare-label-right"></span>
-          <div class="compare-handle"><span></span></div>
-          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
-        </div>
-      </div>
-
-      <div class="demo-controls">
-        <div class="demo-control">
-          <span class="demo-control-title">Map</span>
-          <div class="buttons has-addons" id="stage1-maps">
-            <button class="button" data-map="coc">CoC</button>
-            <button class="button" data-map="disp">Disparity</button>
-          </div>
-        </div>
-        <div class="colorbar">
-          <span>0.0</span><div class="colorbar-gradient"></div><span>1.0</span>
-        </div>
-      </div>
-
-      <div class="stage1-scenes" id="stage1-scenes"></div>
-    </div>
-
-    <h3 class="title is-4 has-text-centered results-subsection">One Model, Every Bokeh Task</h3>
-    <p class="has-text-centered section-subtitle">
-      The same AnyBokeh model handles any-to-any editing, bokeh rendering from all-in-focus inputs, and defocus
-      deblurring. Drag the slider to compare our result with the input, baselines, and ground truth.
-    </p>
-
-    <div class="cmp" id="cmp">
-      <div class="cmp-tasks" id="cmp-tasks"></div>
-
-      <div class="cmp-body">
-        <div class="cmp-side">
-          <span class="demo-control-title">Compare with</span>
-          <div class="cmp-methods" id="cmp-methods"></div>
-        </div>
-
-        <div class="compare cmp-viewer">
-          <img class="compare-base" alt="AnyBokeh result">
-          <img class="compare-top" alt="Comparison image">
-          <span class="demo-label compare-label-left"></span>
-          <span class="demo-label compare-label-right">AnyBokeh (Ours)</span>
-          <span class="cmp-setting" id="cmp-setting"></span>
-          <div class="compare-handle"><span></span></div>
-          <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
-        </div>
-      </div>
-
-      <div class="demo-scenes" id="cmp-scenes"></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="BibTeX">
+<section class="section section-tint" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">BibTeX</h2>
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
     <pre><code>@inproceedings{hou2026anybokeh,
   title     = {AnyBokeh: Physics-Guided Any-to-Any Bokeh Editing with Optical Fingerprint Transfer},
   author    = {Hou, Xinyu and Li, Xiaoming and Yue, Zongsheng and Loy, Chen Change},
