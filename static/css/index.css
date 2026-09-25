@@ -120,6 +120,62 @@ img {
   text-wrap: balance;
 }
 
+.tldr {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tldr-tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.05rem 0.6rem;
+  border-radius: 6px;
+  background: #363636;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.abstract {
+  max-width: 800px;
+  margin: 1.25rem auto 0;
+}
+
+.abstract summary {
+  width: fit-content;
+  margin: 0 auto;
+  color: #777;
+  font-size: 0.95rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.abstract summary::-webkit-details-marker {
+  display: none;
+}
+
+.abstract summary::after {
+  content: ' \25BE';
+}
+
+.abstract[open] summary::after {
+  content: ' \25B4';
+}
+
+.abstract summary:hover {
+  color: #363636;
+}
+
+.abstract .content {
+  margin-top: 1rem;
+}
+
 .demo {
   margin-bottom: 1rem;
 }

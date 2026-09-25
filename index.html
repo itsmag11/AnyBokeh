@@ -8,7 +8,7 @@
   <title>AnyBokeh: Physics-Guided Any-to-Any Bokeh Editing</title>
 
   <meta property="og:title" content="AnyBokeh: Physics-Guided Any-to-Any Bokeh Editing with Optical Fingerprint Transfer">
-  <meta property="og:description" content="Transform an image from an arbitrary source optical state to a desired target focus and aperture setting.">
+  <meta property="og:description" content="AnyBokeh edits a photo from any focus and aperture to any other, reading the source blur as an optical fingerprint instead of discarding it, with no all-in-focus reconstruction needed.">
   <meta property="og:image" content="static/images/framework.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=7">
+  <link rel="stylesheet" href="static/css/index.css?v=8">
   <script defer src="static/js/demo.js?v=2"></script>
 </head>
 <body>
@@ -111,15 +111,37 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Abstract</h2>
-    <div class="content has-text-justified">
-      <p>
-        <!-- TODO: paste the paper abstract -->
-        <b>AnyBokeh</b> aims to achieve physics-grounded any-to-any bokeh editing by transforming an image
-        from an arbitrary source optical state to a desired target focus and aperture setting through
-        optical fingerprint transfer and dual-CoC conditioning.
-      </p>
-    </div>
+    <p class="tldr">
+      <span class="tldr-tag">TL;DR</span>
+      <b>AnyBokeh</b> edits a photo from any focus and aperture to any other. Instead of discarding
+      the source blur, it reads it as an optical fingerprint and transfers it to the target setting,
+      with no all-in-focus reconstruction needed.
+    </p>
+    <details class="abstract">
+      <summary>Read the full abstract</summary>
+      <div class="content has-text-justified">
+        <p>
+          Depth-of-field control is a fundamental tool in photography, yet post-capture bokeh editing from a
+          single image remains challenging. A practical editor should handle images captured under arbitrary
+          focus and aperture settings. Existing methods typically assume an all-in-focus input, or first recover
+          an all-in-focus image before rendering new bokeh. Such pipelines can discard useful blur cues from the
+          source image and propagate reconstruction artifacts into the final edit. We introduce <b>AnyBokeh</b>,
+          a physics-guided framework for <b>any-to-any bokeh editing</b>. Instead of treating source blur merely
+          as a degradation to be removed, AnyBokeh estimates the <b>source blur state</b> with a signed
+          circle-of-confusion map and a disparity map. By modeling the linear relation between signed circle of
+          confusion and disparity difference, AnyBokeh estimates a source-specific <b>optical fingerprint</b> and
+          transfers the source optical characteristics to the desired focus and aperture setting. A generative
+          editor conditioned on both source and target circle-of-confusion maps then performs relative blur
+          synthesis, enabling spatially adaptive deblurring, preservation, and defocus rendering. To support
+          physically supervised learning, we further construct a high-fidelity synthetic dataset with accurate
+          depth, focus distance, and full EXIF metadata. Experiments on real-world benchmarks show that AnyBokeh
+          achieves faithful and controllable editing across any-to-any bokeh editing, all-in-focus-to-bokeh
+          rendering, and defocus deblurring, while avoiding all-in-focus reconstruction and test-time
+          bokeh-level calibration commonly required by existing approaches. The code and dataset will be
+          available at <a href="https://github.com/itsmag11/AnyBokeh">https://github.com/itsmag11/AnyBokeh</a>.
+        </p>
+      </div>
+    </details>
   </div>
 </section>
 
