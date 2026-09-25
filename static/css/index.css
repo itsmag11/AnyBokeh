@@ -120,6 +120,10 @@ img {
   text-wrap: balance;
 }
 
+.tldr-section {
+  padding-top: 0;
+}
+
 .tldr {
   font-family: 'Google Sans', sans-serif;
   font-size: 1.35rem;
