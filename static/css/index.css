@@ -912,6 +912,10 @@ html {
   scroll-margin-top: 80px;
 }
 
+#contact {
+  scroll-margin-top: 80px;
+}
+
 #BibTeX pre {
   background: #fff;
   border: 1px solid #ece8f5;

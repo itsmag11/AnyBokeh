@@ -5,7 +5,8 @@
   function update() {
     const y = window.scrollY + window.innerHeight * 0.35;
     let current = -1;
-    sections.forEach((s, i) => { if (s.offsetTop <= y) current = i; });
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top + window.scrollY <= y) current = i; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = sections.length - 1;
     links.forEach((a, i) => a.classList.toggle('is-active', i === current));
   }
 
