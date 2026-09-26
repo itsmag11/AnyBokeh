@@ -63,7 +63,6 @@
         { id: '6_f10_aif', setting: 'f/10 → All-in-focus', baselines: DD, crop: [0.11, 0.0217, 0.3, 0.3] },
         { id: '8_f4.0_aif', setting: 'f/4.0 → All-in-focus', baselines: DD, crop: [0.1812, 0.25, 0.3, 0.3] },
         { id: '28_f7.1_aif', setting: 'f/7.1 → All-in-focus', baselines: DD, crop: [0.2025, 0.2517, 0.3, 0.3] },
-        { id: '46_f9.0_aif', setting: 'f/9.0 → All-in-focus', baselines: DD, crop: [0.5188, 0.3017, 0.3, 0.3] },
       ],
     },
   ];
@@ -72,13 +71,10 @@
   const viewer = root.querySelector('.cmp-viewer');
   const range = root.querySelector('.compare-range');
   const taskGroup = document.getElementById('cmp-tasks');
-  const methodGroup = document.getElementById('cmp-methods');
   const sceneGroup = document.getElementById('cmp-scenes');
   const setting = document.getElementById('cmp-setting');
   const box = document.getElementById('cmp-box');
   const crops = document.getElementById('cmp-crops');
-  const refToggle = document.getElementById('cmp-ref-toggle');
-  const refImage = document.getElementById('cmp-ref-image');
 
   const state = { task: TASKS[0], scene: TASKS[0].cases[0], method: TASKS[0].cases[0].baselines[0] };
 
@@ -95,18 +91,6 @@
   function setPos(value) {
     root.style.setProperty('--pos', value + '%');
     range.value = value;
-  }
-
-  function buildMethods() {
-    methodGroup.innerHTML = '';
-    leftOptions(state.scene).forEach((m) => {
-      const b = document.createElement('button');
-      b.className = 'cmp-method';
-      b.dataset.method = m;
-      b.textContent = LABELS[m];
-      b.onclick = () => { state.method = m; render(); };
-      methodGroup.appendChild(b);
-    });
   }
 
   function buildCrops() {
@@ -129,15 +113,12 @@
     viewer.querySelector('.compare-top').src = src(scene, method);
     viewer.querySelector('.compare-label-left').textContent = LABELS[method];
     setting.textContent = scene.setting;
-    refImage.src = src(scene, 'gt');
 
     const [x, y, w, h] = scene.crop;
     Object.assign(box.style, { left: `${x * 100}%`, top: `${y * 100}%`, width: `${w * 100}%`, height: `${h * 100}%` });
 
     taskGroup.querySelectorAll('[data-task]').forEach((b) =>
       b.classList.toggle('is-active', b.dataset.task === state.task.id));
-    methodGroup.querySelectorAll('[data-method]').forEach((b) =>
-      b.classList.toggle('is-active', b.dataset.method === method));
     crops.querySelectorAll('[data-method]').forEach((b) =>
       b.classList.toggle('is-active', b.dataset.method === method));
     sceneGroup.querySelectorAll('[data-scene]').forEach((b) =>
@@ -147,7 +128,6 @@
   function selectScene(scene) {
     state.scene = scene;
     if (!leftOptions(scene).includes(state.method)) state.method = scene.baselines[0];
-    buildMethods();
     buildCrops();
     preload(scene);
     render();
@@ -179,11 +159,6 @@
     };
     taskGroup.appendChild(b);
   });
-
-  refToggle.onclick = () => {
-    const open = root.classList.toggle('is-ref-open');
-    refToggle.setAttribute('aria-expanded', open);
-  };
 
   range.addEventListener('input', () => setPos(range.value));
 
