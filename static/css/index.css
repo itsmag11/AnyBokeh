@@ -1163,3 +1163,142 @@ html {
   position: relative;
   z-index: 1;
 }
+
+.abl {
+  --pos: 50%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.abl-tasks {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 620px;
+  margin: 0 auto 0.75rem;
+}
+
+.abl-desc {
+  max-width: 720px;
+  min-height: 2.6em;
+  margin: 0 auto 1.25rem;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+.abl-body {
+  display: grid;
+  grid-template-columns: minmax(0, 460px) minmax(0, 330px);
+  justify-content: center;
+  align-items: end;
+  gap: 2rem;
+}
+
+.abl-switch {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.abl-switch-btn {
+  padding: 0.3rem 0.9rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 999px;
+  background: #fff;
+  color: #666;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.abl-switch-btn:hover {
+  border-color: #b5b5b5;
+  color: #363636;
+}
+
+.abl-switch-btn.is-active {
+  border-color: #363636;
+  background: #363636;
+  color: #fff;
+}
+
+.abl-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  border: 1px solid #ece8f5;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.abl-grid {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.abl-row-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.abl-row-label.is-ours {
+  color: #7b5cd6;
+}
+
+.abl-cell {
+  margin: 0;
+}
+
+.abl-cell img,
+.abl-empty {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 0;
+  border-radius: 8px;
+}
+
+.abl-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed #d0cbe0;
+  background: repeating-linear-gradient(135deg, #f7f5fc 0 8px, #efebf8 8px 16px);
+  color: #999;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.85rem;
+}
+
+.abl-cell figcaption {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.abl-colorbar .colorbar-gradient {
+  width: 150px;
+}
+
+.abl-colorbar-note {
+  margin-top: -0.3rem;
+  font-size: 0.72rem;
+  color: #999;
+}
+
+#abl-scenes {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .abl-tasks { grid-template-columns: 1fr; }
+  .abl-body { grid-template-columns: 1fr; gap: 1.25rem; }
+}
