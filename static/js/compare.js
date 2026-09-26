@@ -61,7 +61,6 @@
         { id: '13_f5.6_aif', setting: 'f/5.6 → All-in-focus', baselines: DD, crop: [0.015, 0.32, 0.3, 0.3] },
         { id: '4416_bokeh_aif', setting: 'Bokeh → All-in-focus', baselines: ['drbnet', 'restormer'], crop: [0.1338, 0.2033, 0.3, 0.3] },
         { id: '12_f2.0_aif', setting: 'f/2.0 → All-in-focus', baselines: DD, crop: [0.2425, 0.6583, 0.3, 0.3] },
-        { id: '6_f10_aif', setting: 'f/10 → All-in-focus', baselines: DD, crop: [0.11, 0.0217, 0.3, 0.3] },
         { id: '8_f4.0_aif', setting: 'f/4.0 → All-in-focus', baselines: DD, crop: [0.1812, 0.25, 0.3, 0.3] },
         { id: '28_f7.1_aif', setting: 'f/7.1 → All-in-focus', baselines: DD, crop: [0.2025, 0.2517, 0.3, 0.3] },
       ],
