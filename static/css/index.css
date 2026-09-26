@@ -120,6 +120,62 @@ body {
   line-height: 1.4;
 }
 
+.star-cta {
+  margin-top: 2rem;
+  text-align: center;
+  color: #555;
+}
+
+.star-cta p {
+  margin-bottom: 0.9rem !important;
+}
+
+.star-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: #24292f;
+  color: #fff !important;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(123, 92, 214, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.star-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(123, 92, 214, 0.35);
+}
+
+.star-cta-button .fa-github {
+  font-size: 1.15rem;
+}
+
+.star-cta-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.2rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.9rem;
+}
+
+.star-cta-count i {
+  color: #f5c542;
+}
+
+.star-cta-count[hidden] {
+  display: none;
+}
+
+.star-cta-button:not(:has(.star-cta-count:not([hidden]))) {
+  padding-right: 1.1rem;
+}
+
 .closing {
   margin-top: 2.5rem;
   text-align: center;
