@@ -1076,19 +1076,17 @@ html {
   cursor: default;
 }
 
-.cmp-crop.is-gt {
-  cursor: default;
-}
-
-.cmp-crop.is-gt:hover {
-  border-color: transparent;
-}
-
 .cmp-hint {
   margin-top: 0.6rem;
   font-size: 0.8rem;
   color: #999;
   text-align: center;
+}
+
+.cmp-note {
+  display: block;
+  margin-top: 0.2rem;
+  font-style: italic;
 }
 
 .cmp-side {

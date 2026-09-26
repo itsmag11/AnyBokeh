@@ -21,11 +21,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=38">
+  <link rel="stylesheet" href="static/css/index.css?v=40">
   <script defer src="static/js/demo.js?v=6"></script>
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
-  <script defer src="static/js/compare.js?v=7"></script>
+  <script defer src="static/js/compare.js?v=9"></script>
   <script defer src="static/js/fingerprint.js?v=1"></script>
   <script defer src="static/js/nav.js?v=1"></script>
   <script defer src="static/js/visitors.js?v=1"></script>
@@ -207,6 +207,7 @@
       <div class="cmp-crops" id="cmp-crops"></div>
       <p class="cmp-hint">
         Drag the slider to compare with AnyBokeh. The crops zoom into the dashed box; click one to put that method in the slider.
+        <span class="cmp-note">Note: bokeh editing is ill-posed by nature, especially where detail lost to defocus must be recovered (deblurring, or sharpening in any-to-any editing), so plausible results inevitably differ from the GT.</span>
       </p>
     </div>
   </div>

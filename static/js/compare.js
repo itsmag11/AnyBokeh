@@ -14,6 +14,7 @@
     drbnet: 'DRBNet',
     restormer: 'Restormer',
     diffcamera: 'DiffCamera',
+    gt: 'GT',
   };
 
   const A2A = ['restormer_bokehme', 'restormer_bokehdiff', 'drbnet_bokehme', 'drbnet_bokehdiff'];
@@ -79,10 +80,10 @@
   const state = { task: TASKS[0], scene: TASKS[0].cases[0], method: TASKS[0].cases[0].baselines[0] };
 
   const src = (scene, name) => `${ROOT}/${state.task.id}/${scene.id}/${name}.jpg?${VERSION}`;
-  const leftOptions = (scene) => ['input', ...scene.baselines];
+  const leftOptions = (scene) => ['input', ...scene.baselines, 'gt'];
 
   function preload(scene) {
-    ['ours', 'gt', ...leftOptions(scene)].forEach((m) => {
+    ['ours', ...leftOptions(scene)].forEach((m) => {
       new Image().src = src(scene, m);
       new Image().src = src(scene, `crop_${m}`);
     });
@@ -95,14 +96,15 @@
 
   function buildCrops() {
     crops.innerHTML = '';
-    [...leftOptions(state.scene), 'ours', 'gt'].forEach((m) => {
-      const fixed = m === 'ours' || m === 'gt';
-      const tile = document.createElement(fixed ? 'div' : 'button');
-      tile.className = 'cmp-crop' + (fixed ? ` is-${m}` : '');
-      if (!fixed) tile.dataset.method = m;
-      const label = m === 'gt' ? 'GT' : LABELS[m];
-      tile.innerHTML = `<img src="${src(state.scene, `crop_${m}`)}" alt="${label} crop"><span>${label}</span>`;
-      if (!fixed) tile.onclick = () => { state.method = m; render(); };
+    const order = [...leftOptions(state.scene)];
+    order.splice(order.length - 1, 0, 'ours');
+    order.forEach((m) => {
+      const isOurs = m === 'ours';
+      const tile = document.createElement(isOurs ? 'div' : 'button');
+      tile.className = 'cmp-crop' + (isOurs ? ' is-ours' : '');
+      if (!isOurs) tile.dataset.method = m;
+      tile.innerHTML = `<img src="${src(state.scene, `crop_${m}`)}" alt="${LABELS[m]} crop"><span>${LABELS[m]}</span>`;
+      if (!isOurs) tile.onclick = () => { state.method = m; render(); };
       crops.appendChild(tile);
     });
   }
