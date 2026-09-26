@@ -26,7 +26,6 @@
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
   <script defer src="static/js/compare.js?v=9"></script>
-  <script defer src="static/js/ablation.js?v=1"></script>
   <script defer src="static/js/fingerprint.js?v=1"></script>
   <script defer src="static/js/nav.js?v=3"></script>
   <script defer src="static/js/visitors.js?v=1"></script>
@@ -253,49 +252,6 @@
       <div class="stage1-scenes" id="stage1-scenes"></div>
       <p class="demo-hint">
         Drag either slider to reveal the predicted map over the input, switch between CoC and disparity, and click a thumbnail to try other inputs.
-      </p>
-    </div>
-  </div>
-
-  <div class="container is-max-desktop showcase-part" id="ablation">
-    <p class="eyebrow">Ablation Studies</p>
-    <h2 class="title is-3 has-text-centered">Why Read the Source Blur?</h2>
-    <p class="has-text-centered section-subtitle">
-      Both ablations change only how the source blur state reaches the editor. Estimating it with Stage 1 and
-      feeding it to Stage 2 gives more faithful edits on strongly defocused inputs.
-    </p>
-
-    <div class="abl" id="abl">
-      <div class="cmp-tasks abl-tasks" id="abl-tasks"></div>
-      <p class="abl-desc" id="abl-desc"></p>
-
-      <div class="abl-body">
-        <div class="abl-main">
-          <div class="abl-switch" id="abl-switch"></div>
-          <div class="compare abl-viewer">
-            <img class="compare-base" alt="AnyBokeh result">
-            <img class="compare-top" alt="Comparison image">
-            <span class="demo-label compare-label-left"></span>
-            <span class="demo-label compare-label-right">AnyBokeh (Ours)</span>
-            <span class="cmp-setting" id="abl-setting"></span>
-            <div class="compare-handle"><span></span></div>
-            <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
-          </div>
-        </div>
-
-        <div class="abl-panel">
-          <span class="demo-control-title">What the editor sees</span>
-          <div class="abl-grid" id="abl-grid"></div>
-          <div class="colorbar abl-colorbar">
-            <span>0.0</span><div class="colorbar-gradient"></div><span>1.0</span>
-          </div>
-          <span class="abl-colorbar-note">Normalized signed CoC; 0.5 (teal) is in focus.</span>
-        </div>
-      </div>
-
-      <div class="demo-scenes" id="abl-scenes"></div>
-      <p class="demo-hint">
-        Switch between the two ablations with the tabs, drag the slider to compare with AnyBokeh, and use the buttons above the image to compare against the input or GT instead.
       </p>
     </div>
   </div>
