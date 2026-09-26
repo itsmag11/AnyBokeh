@@ -177,18 +177,9 @@ body {
 }
 
 .closing {
-  margin-top: 2.5rem;
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #555;
-}
-
-.closing-title {
-  margin-bottom: 0.5rem !important;
-  font-family: 'Google Sans', sans-serif;
-  font-size: 1.1rem !important;
-  font-weight: 600;
-  color: #363636 !important;
 }
 
 img {
@@ -913,7 +904,12 @@ html {
 }
 
 #contact {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 52px;
+}
+
+.footer .star-cta {
+  margin-bottom: 3rem;
+  font-size: 1rem;
 }
 
 #BibTeX pre {
@@ -1158,7 +1154,7 @@ html {
 .footer {
   position: relative;
   overflow: hidden;
-  padding: 2rem 1.5rem;
+  padding: 4.5rem 1.5rem 2rem;
   font-size: 0.9rem;
   background: #fff;
 }
