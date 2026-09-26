@@ -1,58 +1,69 @@
 (function () {
   const ROOT = 'static/images/compare';
-  const VERSION = 'v=1';
+  const VERSION = 'v=2';
 
+  const LABELS = {
+    input: 'Input',
+    ours: 'AnyBokeh (Ours)',
+    restormer_bokehme: 'Restormer + BokehMe',
+    restormer_bokehdiff: 'Restormer + BokehDiff',
+    drbnet_bokehme: 'DRBNet + BokehMe',
+    drbnet_bokehdiff: 'DRBNet + BokehDiff',
+    bokehme: 'BokehMe',
+    bokehdiff: 'BokehDiff',
+    drbnet: 'DRBNet',
+    restormer: 'Restormer',
+    diffcamera: 'DiffCamera',
+  };
+
+  const A2A = ['restormer_bokehme', 'restormer_bokehdiff', 'drbnet_bokehme', 'drbnet_bokehdiff'];
+  const BR = ['bokehme', 'bokehdiff'];
+  const DD = ['drbnet', 'restormer', 'diffcamera'];
+
+  // crop: [x, y, w, h] as fractions of the image, chosen where AnyBokeh differs most from the baselines.
   const TASKS = [
     {
       id: 'any2any',
       name: 'Any-to-Any Editing',
-      methods: [
-        ['input', 'Input'],
-        ['restormer_bokehme', 'Restormer + BokehMe'],
-        ['restormer_bokehdiff', 'Restormer + BokehDiff'],
-        ['drbnet_bokehme', 'DRBNet + BokehMe'],
-        ['drbnet_bokehdiff', 'DRBNet + BokehDiff'],
-        ['gt', 'GT'],
-      ],
       cases: [
-        { id: '109_f2.8_109_f6.3', setting: 'f/2.8 → f/6.3' },
-        { id: '93_f22_93_f4.5', setting: 'f/22 → f/4.5' },
-        { id: '4435_bokeh_4435_original', setting: 'Bokeh → All-in-focus' },
-        { id: '4459_original_4459_bokeh', setting: 'All-in-focus → Bokeh' },
-        { id: '27_f18_27_f7.1', setting: 'f/18 → f/7.1' },
-        { id: '36_f10_36_f6.3', setting: 'f/10 → f/6.3' },
-        { id: '39_f7.1_39_f3.2', setting: 'f/7.1 → f/3.2' },
-        { id: '76_f2.5_76_f5.6', setting: 'f/2.5 → f/5.6' },
+        { id: '201_f11_201_f2.0', setting: 'f/11 → f/2.0', baselines: A2A, crop: [0.685, 0.64, 0.3, 0.3] },
+        { id: '66_f16_66_f2.5', setting: 'f/16 → f/2.5', baselines: A2A, crop: [0.3075, 0.26, 0.3, 0.3] },
+        { id: '205_f4.0_205_f2.0', setting: 'f/4.0 → f/2.0', baselines: A2A, crop: [0.1713, 0.3433, 0.3, 0.3] },
+        { id: '127_f5.0_127_f2.8', setting: 'f/5.0 → f/2.8', baselines: A2A, crop: [0.67, 0.3683, 0.3, 0.3] },
+        { id: '186_f8.0_186_f14', setting: 'f/8.0 → f/14', baselines: A2A, crop: [0.685, 0.515, 0.3, 0.3] },
+        { id: '25_f22_25_f2.0', setting: 'f/22 → f/2.0', baselines: A2A, crop: [0.6562, 0.5483, 0.3, 0.3] },
+        { id: '119_f13_119_f4.0', setting: 'f/13 → f/4.0', baselines: A2A, crop: [0.1288, 0.49, 0.3, 0.3] },
+        { id: '51_f2.0_51_f8.0', setting: 'f/2.0 → f/8.0', baselines: A2A, crop: [0.61, 0.6767, 0.3, 0.3] },
+        { id: '71_f2.8_71_f14', setting: 'f/2.8 → f/14', baselines: A2A, crop: [0.5813, 0.675, 0.3, 0.3] },
+        { id: '93_f22_93_f4.5', setting: 'f/22 → f/4.5', baselines: A2A, crop: [0.285, 0.09, 0.3, 0.3] },
       ],
     },
     {
       id: 'render',
       name: 'Bokeh Rendering',
-      methods: [
-        ['input', 'Input'],
-        ['bokehme', 'BokehMe'],
-        ['bokehdiff', 'BokehDiff'],
-        ['gt', 'GT'],
-      ],
       cases: [
-        { id: '10_f2.0', setting: 'All-in-focus → f/2.0' },
-        { id: '37_f2.0', setting: 'All-in-focus → f/2.0' },
-        { id: '39_f4.0', setting: 'All-in-focus → f/4.0' },
+        { id: '16_f2.0', setting: 'All-in-focus → f/2.0', baselines: BR, crop: [0.685, 0.2633, 0.3, 0.3] },
+        { id: '43_f2.0', setting: 'All-in-focus → f/2.0', baselines: BR, crop: [0.015, 0.68, 0.3, 0.3] },
+        { id: '4435_f1.8', setting: 'All-in-focus → f/1.8', baselines: BR, crop: [0.3475, 0.6317, 0.3, 0.3] },
+        { id: '4401_f1.8', setting: 'All-in-focus → f/1.8', baselines: BR, crop: [0.6512, 0.44, 0.3, 0.3] },
+        { id: '25_f2.2', setting: 'All-in-focus → f/2.2', baselines: BR, crop: [0.685, 0.52, 0.3, 0.3] },
+        { id: '24_f5.0', setting: 'All-in-focus → f/5.0', baselines: BR, crop: [0.31, 0.02, 0.3, 0.3] },
+        { id: '4578_f1.8', setting: 'All-in-focus → f/1.8', baselines: BR, crop: [0.1338, 0.03, 0.3, 0.3] },
+        { id: '2_f2.0', setting: 'All-in-focus → f/2.0', baselines: BR, crop: [0.1237, 0.35, 0.3, 0.3] },
       ],
     },
     {
       id: 'deblur',
       name: 'Defocus Deblurring',
-      methods: [
-        ['input', 'Input'],
-        ['drbnet', 'DRBNet'],
-        ['restormer', 'Restormer'],
-        ['gt', 'GT'],
-      ],
       cases: [
-        { id: '13_f5.6_aif', setting: 'f/5.6 → All-in-focus' },
-        { id: '1_f11_aif', setting: 'f/11 → All-in-focus' },
-        { id: '9_f2.0_aif', setting: 'f/2.0 → All-in-focus' },
+        { id: '4602_bokeh_aif', setting: 'Bokeh → All-in-focus', baselines: ['drbnet', 'restormer'], crop: [0.5437, 0.02, 0.3, 0.3] },
+        { id: '13_f5.6_aif', setting: 'f/5.6 → All-in-focus', baselines: DD, crop: [0.015, 0.32, 0.3, 0.3] },
+        { id: '4416_bokeh_aif', setting: 'Bokeh → All-in-focus', baselines: ['drbnet', 'restormer'], crop: [0.1338, 0.2033, 0.3, 0.3] },
+        { id: '12_f2.0_aif', setting: 'f/2.0 → All-in-focus', baselines: DD, crop: [0.2425, 0.6583, 0.3, 0.3] },
+        { id: '6_f10_aif', setting: 'f/10 → All-in-focus', baselines: DD, crop: [0.11, 0.0217, 0.3, 0.3] },
+        { id: '8_f4.0_aif', setting: 'f/4.0 → All-in-focus', baselines: DD, crop: [0.1812, 0.25, 0.3, 0.3] },
+        { id: '28_f7.1_aif', setting: 'f/7.1 → All-in-focus', baselines: DD, crop: [0.2025, 0.2517, 0.3, 0.3] },
+        { id: '46_f9.0_aif', setting: 'f/9.0 → All-in-focus', baselines: DD, crop: [0.5188, 0.3017, 0.3, 0.3] },
       ],
     },
   ];
@@ -64,13 +75,21 @@
   const methodGroup = document.getElementById('cmp-methods');
   const sceneGroup = document.getElementById('cmp-scenes');
   const setting = document.getElementById('cmp-setting');
+  const box = document.getElementById('cmp-box');
+  const crops = document.getElementById('cmp-crops');
+  const refToggle = document.getElementById('cmp-ref-toggle');
+  const refImage = document.getElementById('cmp-ref-image');
 
-  const state = { task: TASKS[0], scene: TASKS[0].cases[0], method: TASKS[0].methods[1][0] };
+  const state = { task: TASKS[0], scene: TASKS[0].cases[0], method: TASKS[0].cases[0].baselines[0] };
 
-  const src = (task, scene, method) => `${ROOT}/${task.id}/${scene.id}/${method}.jpg?${VERSION}`;
+  const src = (scene, name) => `${ROOT}/${state.task.id}/${scene.id}/${name}.jpg?${VERSION}`;
+  const leftOptions = (scene) => ['input', ...scene.baselines];
 
-  function preload(task, scene) {
-    ['ours', ...task.methods.map(([m]) => m)].forEach((m) => { new Image().src = src(task, scene, m); });
+  function preload(scene) {
+    ['ours', 'gt', ...leftOptions(scene)].forEach((m) => {
+      new Image().src = src(scene, m);
+      new Image().src = src(scene, `crop_${m}`);
+    });
   }
 
   function setPos(value) {
@@ -78,41 +97,70 @@
     range.value = value;
   }
 
+  function buildMethods() {
+    methodGroup.innerHTML = '';
+    leftOptions(state.scene).forEach((m) => {
+      const b = document.createElement('button');
+      b.className = 'cmp-method';
+      b.dataset.method = m;
+      b.textContent = LABELS[m];
+      b.onclick = () => { state.method = m; render(); };
+      methodGroup.appendChild(b);
+    });
+  }
+
+  function buildCrops() {
+    crops.innerHTML = '';
+    [...leftOptions(state.scene), 'ours', 'gt'].forEach((m) => {
+      const fixed = m === 'ours' || m === 'gt';
+      const tile = document.createElement(fixed ? 'div' : 'button');
+      tile.className = 'cmp-crop' + (fixed ? ` is-${m}` : '');
+      if (!fixed) tile.dataset.method = m;
+      const label = m === 'gt' ? 'GT' : LABELS[m];
+      tile.innerHTML = `<img src="${src(state.scene, `crop_${m}`)}" alt="${label} crop"><span>${label}</span>`;
+      if (!fixed) tile.onclick = () => { state.method = m; render(); };
+      crops.appendChild(tile);
+    });
+  }
+
   function render() {
-    const { task, scene, method } = state;
-    viewer.querySelector('.compare-base').src = src(task, scene, 'ours');
-    viewer.querySelector('.compare-top').src = src(task, scene, method);
-    viewer.querySelector('.compare-label-left').textContent =
-      task.methods.find(([m]) => m === method)[1];
+    const { scene, method } = state;
+    viewer.querySelector('.compare-base').src = src(scene, 'ours');
+    viewer.querySelector('.compare-top').src = src(scene, method);
+    viewer.querySelector('.compare-label-left').textContent = LABELS[method];
     setting.textContent = scene.setting;
+    refImage.src = src(scene, 'gt');
+
+    const [x, y, w, h] = scene.crop;
+    Object.assign(box.style, { left: `${x * 100}%`, top: `${y * 100}%`, width: `${w * 100}%`, height: `${h * 100}%` });
 
     taskGroup.querySelectorAll('[data-task]').forEach((b) =>
-      b.classList.toggle('is-active', b.dataset.task === task.id));
+      b.classList.toggle('is-active', b.dataset.task === state.task.id));
     methodGroup.querySelectorAll('[data-method]').forEach((b) =>
+      b.classList.toggle('is-active', b.dataset.method === method));
+    crops.querySelectorAll('[data-method]').forEach((b) =>
       b.classList.toggle('is-active', b.dataset.method === method));
     sceneGroup.querySelectorAll('[data-scene]').forEach((b) =>
       b.classList.toggle('is-active', b.dataset.scene === scene.id));
   }
 
-  function buildTask() {
-    const { task } = state;
-    methodGroup.innerHTML = '';
-    task.methods.forEach(([m, label]) => {
-      const b = document.createElement('button');
-      b.className = 'cmp-method';
-      b.dataset.method = m;
-      b.textContent = label;
-      b.onclick = () => { state.method = m; render(); };
-      methodGroup.appendChild(b);
-    });
+  function selectScene(scene) {
+    state.scene = scene;
+    if (!leftOptions(scene).includes(state.method)) state.method = scene.baselines[0];
+    buildMethods();
+    buildCrops();
+    preload(scene);
+    render();
+  }
 
+  function buildTask() {
     sceneGroup.innerHTML = '';
-    task.cases.forEach((scene) => {
+    state.task.cases.forEach((scene) => {
       const thumb = document.createElement('button');
       thumb.className = 'demo-thumb';
       thumb.dataset.scene = scene.id;
-      thumb.innerHTML = `<img src="${src(task, scene, 'ours')}" alt="${task.name} scene" loading="lazy">`;
-      thumb.onclick = () => { state.scene = scene; preload(task, scene); render(); };
+      thumb.innerHTML = `<img src="${src(scene, 'ours')}" alt="${state.task.name} scene" loading="lazy">`;
+      thumb.onclick = () => selectScene(scene);
       sceneGroup.appendChild(thumb);
     });
   }
@@ -125,19 +173,21 @@
     b.onclick = () => {
       if (state.task === task) return;
       state.task = task;
-      state.scene = task.cases[0];
-      state.method = task.methods[1][0];
+      state.method = task.cases[0].baselines[0];
       buildTask();
-      preload(task, state.scene);
-      render();
+      selectScene(task.cases[0]);
     };
     taskGroup.appendChild(b);
   });
+
+  refToggle.onclick = () => {
+    const open = root.classList.toggle('is-ref-open');
+    refToggle.setAttribute('aria-expanded', open);
+  };
 
   range.addEventListener('input', () => setPos(range.value));
 
   setPos(50);
   buildTask();
-  preload(state.task, state.scene);
-  render();
+  selectScene(state.scene);
 })();

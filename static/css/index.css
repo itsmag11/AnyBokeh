@@ -1010,6 +1010,123 @@ html {
   align-items: center;
 }
 
+.cmp-box {
+  position: absolute;
+  border: 2px dashed rgba(255, 255, 255, 0.95);
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.cmp-ref {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.cmp-ref img {
+  display: none;
+  width: 190px;
+  margin: 0;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.cmp.is-ref-open .cmp-ref img {
+  display: block;
+}
+
+.cmp-ref-toggle {
+  padding: 0.2rem 0.8rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.cmp-ref-toggle::after {
+  content: ' \25B4';
+}
+
+.cmp.is-ref-open .cmp-ref-toggle::after {
+  content: ' \25BE';
+}
+
+.cmp-crops {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.cmp-crop {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 170px;
+  min-width: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.cmp-crop img {
+  margin: 0;
+}
+
+.cmp-crop span {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.2rem;
+  line-height: 1.2;
+}
+
+.cmp-crop:hover,
+.cmp-crop.is-active {
+  border-color: #b5b5b5;
+}
+
+.cmp-crop.is-ours {
+  border-color: #7b5cd6;
+  color: #7b5cd6;
+  font-weight: 600;
+  cursor: default;
+}
+
+.cmp-crop.is-gt {
+  margin-left: 0.9rem;
+  color: #999;
+  cursor: default;
+}
+
+.cmp-crop.is-gt:hover {
+  border-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .cmp-crop.is-gt { margin-left: 0; }
+  .cmp-crops { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .cmp-ref img { width: 120px; }
+}
+
 .cmp-side {
   display: flex;
   flex-direction: column;
