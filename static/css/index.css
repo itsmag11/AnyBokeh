@@ -922,10 +922,6 @@ html {
   border-radius: 10px;
 }
 
-#demo-section .orb {
-  opacity: 0.5;
-}
-
 #demo-section .demo-controls .button {
   background: rgba(255, 255, 255, 0.7);
 }
@@ -1160,6 +1156,14 @@ html {
 }
 
 .footer {
+  position: relative;
+  overflow: hidden;
   padding: 2rem 1.5rem;
   font-size: 0.9rem;
+  background: #fff;
+}
+
+.footer .container {
+  position: relative;
+  z-index: 1;
 }
