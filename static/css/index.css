@@ -1003,6 +1003,41 @@ html {
   color: #555;
 }
 
+.visitor-map {
+  width: 280px;
+  max-width: 100%;
+  margin: 0 auto 1.25rem;
+}
+
+.visitor-map #mapmyvisitors-widget,
+.visitor-map .mapmyvisitors-map-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+.visitor-map .jvectormap-zoomin,
+.visitor-map .jvectormap-zoomout,
+.visitor-map .jvectormap-goback {
+  display: none !important;
+}
+
+.visitor-map .mapmyvisitors-map {
+  mix-blend-mode: multiply;
+  /* the +/- zoom buttons are baked into the bottom-left of the background image */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 13% 100%, 13% 56%, 0 56%);
+}
+
+.visitor-map .mapmyvisitors-visitors,
+.visitor-map .mapmyvisitors-date,
+.visitor-map .mapmyvisitors-bottom-text,
+.visitor-map #clstminf {
+  display: none !important;
+}
+
 .footer {
   padding: 2rem 1.5rem;
   font-size: 0.9rem;
