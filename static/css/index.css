@@ -1072,8 +1072,8 @@ html {
   cursor: default;
 }
 
-.cmp-hint {
-  margin-top: 0.6rem;
+.demo-hint {
+  margin-top: 0.8rem;
   font-size: 0.8rem;
   color: #999;
   text-align: center;

@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=46">
+  <link rel="stylesheet" href="static/css/index.css?v=47">
   <script defer src="static/js/demo.js?v=6"></script>
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
@@ -165,6 +165,9 @@
       </div>
 
       <div class="demo-scenes" id="demo-scenes"></div>
+      <p class="demo-hint">
+        Choose a target aperture and a focus point (marked in red on the input) to see the re-rendered result; click a thumbnail to switch scenes.
+      </p>
     </div>
   </div>
 
@@ -198,7 +201,7 @@
       </div>
 
       <div class="cmp-crops" id="cmp-crops"></div>
-      <p class="cmp-hint">
+      <p class="demo-hint">
         Drag the slider to compare with AnyBokeh. The crops zoom into the dashed box; click one to put that method in the slider.
         <span class="cmp-note">Note: recovering detail from defocus blur is ill-posed, so deblurred regions may differ from the GT.</span>
       </p>
@@ -210,7 +213,7 @@
     <h2 class="title is-3 has-text-centered">Reading the Blur State of Any Input</h2>
     <p class="has-text-centered section-subtitle">
       Stage 1 predicts the source CoC and scene disparity directly from the input, whether it is shallow or
-      deep depth-of-field. Drag the slider to compare the input with its predictions.
+      deep depth-of-field.
     </p>
 
     <div class="stage1" id="stage1">
@@ -247,6 +250,9 @@
       </div>
 
       <div class="stage1-scenes" id="stage1-scenes"></div>
+      <p class="demo-hint">
+        Drag either slider to reveal the predicted map over the input, switch between CoC and disparity, and click a thumbnail to try other inputs.
+      </p>
     </div>
   </div>
 </section>
