@@ -1,6 +1,6 @@
 (function () {
   const ROOT = 'static/images/compare';
-  const VERSION = 'v=3';
+  const VERSION = 'v=4';
 
   const LABELS = {
     input: 'Input',
@@ -33,7 +33,7 @@
         { id: '119_f13_119_f4.0', setting: 'f/13 → f/4.0', baselines: A2A, crop: [0.4312, 0.02, 0.3, 0.3] },
         { id: '51_f2.0_51_f8.0', setting: 'f/2.0 → f/8.0', baselines: A2A, crop: [0.685, 0.1983, 0.3, 0.3] },
         { id: '66_f16_66_f2.5', setting: 'f/16 → f/2.5', baselines: A2A, crop: [0.3075, 0.26, 0.3, 0.3] },
-        { id: '25_f22_25_f2.0', setting: 'f/22 → f/2.0', baselines: A2A, crop: [0.03, 0.02, 0.3, 0.3] },
+        { id: '25_f22_25_f2.0', setting: 'f/22 → f/2.0', baselines: A2A, crop: [0.1462, 0.0233, 0.3, 0.3] },
         { id: '186_f8.0_186_f14', setting: 'f/8.0 → f/14', baselines: A2A, crop: [0.685, 0.515, 0.3, 0.3] },
       ],
     },
