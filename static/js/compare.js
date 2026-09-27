@@ -35,8 +35,6 @@
         { id: '25_f22_25_f2.0', setting: 'f/22 → f/2.0', baselines: A2A, crop: [0.6562, 0.5483, 0.3, 0.3] },
         { id: '119_f13_119_f4.0', setting: 'f/13 → f/4.0', baselines: A2A, crop: [0.1288, 0.49, 0.3, 0.3] },
         { id: '51_f2.0_51_f8.0', setting: 'f/2.0 → f/8.0', baselines: A2A, crop: [0.61, 0.6767, 0.3, 0.3] },
-        { id: '71_f2.8_71_f14', setting: 'f/2.8 → f/14', baselines: A2A, crop: [0.5813, 0.675, 0.3, 0.3] },
-        { id: '93_f22_93_f4.5', setting: 'f/22 → f/4.5', baselines: A2A, crop: [0.285, 0.09, 0.3, 0.3] },
       ],
     },
     {
