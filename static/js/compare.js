@@ -1,6 +1,6 @@
 (function () {
   const ROOT = 'static/images/compare';
-  const VERSION = 'v=2';
+  const VERSION = 'v=3';
 
   const LABELS = {
     input: 'Input',
@@ -30,10 +30,10 @@
         { id: '127_f5.0_127_f2.8', setting: 'f/5.0 → f/2.8', baselines: A2A, crop: [0.67, 0.3683, 0.3, 0.3] },
         { id: '205_f4.0_205_f2.0', setting: 'f/4.0 → f/2.0', baselines: A2A, crop: [0.1713, 0.3433, 0.3, 0.3] },
         { id: '201_f11_201_f2.0', setting: 'f/11 → f/2.0', baselines: A2A, crop: [0.685, 0.64, 0.3, 0.3] },
-        { id: '119_f13_119_f4.0', setting: 'f/13 → f/4.0', baselines: A2A, crop: [0.1288, 0.49, 0.3, 0.3] },
-        { id: '51_f2.0_51_f8.0', setting: 'f/2.0 → f/8.0', baselines: A2A, crop: [0.61, 0.6767, 0.3, 0.3] },
+        { id: '119_f13_119_f4.0', setting: 'f/13 → f/4.0', baselines: A2A, crop: [0.4312, 0.02, 0.3, 0.3] },
+        { id: '51_f2.0_51_f8.0', setting: 'f/2.0 → f/8.0', baselines: A2A, crop: [0.685, 0.1983, 0.3, 0.3] },
         { id: '66_f16_66_f2.5', setting: 'f/16 → f/2.5', baselines: A2A, crop: [0.3075, 0.26, 0.3, 0.3] },
-        { id: '25_f22_25_f2.0', setting: 'f/22 → f/2.0', baselines: A2A, crop: [0.6562, 0.5483, 0.3, 0.3] },
+        { id: '25_f22_25_f2.0', setting: 'f/22 → f/2.0', baselines: A2A, crop: [0.03, 0.02, 0.3, 0.3] },
         { id: '186_f8.0_186_f14', setting: 'f/8.0 → f/14', baselines: A2A, crop: [0.685, 0.515, 0.3, 0.3] },
       ],
     },
