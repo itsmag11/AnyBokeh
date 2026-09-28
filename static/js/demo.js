@@ -7,7 +7,6 @@
   // `source` is the f-number of the input photo; `id` is the image folder name.
   const SCENES = [
     { id: '63_f13', source: 'f/13', focus: ['focus1', 'focus2'] },
-    { id: '71_f10', source: 'f/10', focus: ['focus1', 'focus2'] },
     { id: '119_f22', source: 'f/22', focus: ['focus1', 'focus2', 'focus3'] },
     { id: '51_f2.0', source: 'f/2.0', focus: ['focus1'] },
     { id: '127_f5.0', source: 'f/5.0', focus: ['focus1', 'focus2', 'focus3'] },
