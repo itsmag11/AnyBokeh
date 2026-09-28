@@ -21,8 +21,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=49">
-  <script defer src="static/js/demo.js?v=6"></script>
+  <link rel="stylesheet" href="static/css/index.css?v=50">
+  <script defer src="static/js/demo.js?v=8"></script>
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
   <script defer src="static/js/compare.js?v=14"></script>
@@ -140,24 +140,21 @@
     <div class="demo" id="demo">
       <div class="demo-pair">
         <div class="demo-viewer">
-          <img id="demo-input" src="static/images/demo/63_f13/focus1_input.jpg?v=3" alt="Input image">
+          <img id="demo-input" src="static/images/demo/63_f13/focus1_input.jpg?v=5" alt="Input image">
           <span class="demo-label" id="demo-input-label">Input</span>
         </div>
         <div class="demo-viewer">
-          <img id="demo-image" src="static/images/demo/63_f13/focus1_f2.jpg?v=3" alt="AnyBokeh result">
+          <img id="demo-image" src="static/images/demo/63_f13/focus1_f2.jpg?v=5" alt="AnyBokeh result">
           <span class="demo-label" id="demo-label">f/2</span>
         </div>
       </div>
 
       <div class="demo-controls">
-        <div class="demo-control">
+        <label class="demo-control demo-aperture">
           <span class="demo-control-title">Aperture</span>
-          <div class="buttons has-addons demo-apertures" id="demo-apertures">
-            <button class="button" data-aperture="f11">f/11</button>
-            <button class="button" data-aperture="f4">f/4</button>
-            <button class="button" data-aperture="f2">f/2</button>
-          </div>
-        </div>
+          <input type="range" id="demo-aperture" min="0" max="20" step="1" value="0" aria-label="Target aperture">
+          <span class="demo-aperture-value" id="demo-aperture-value">f/2</span>
+        </label>
         <div class="demo-control">
           <span class="demo-control-title">Focus Point</span>
           <div class="buttons has-addons" id="demo-focus"></div>
@@ -166,7 +163,7 @@
 
       <div class="demo-scenes" id="demo-scenes"></div>
       <p class="demo-hint">
-        Choose a target aperture and a focus point (marked in red on the input) to see the re-rendered result; click a thumbnail to switch scenes.
+        Drag the slider to sweep the target aperture from f/2 to f/20, and pick a focus point (marked in red on the input); click a thumbnail to switch scenes.
       </p>
     </div>
   </div>

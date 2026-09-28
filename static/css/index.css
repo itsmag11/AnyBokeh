@@ -323,6 +323,19 @@ img {
   color: #555;
 }
 
+.demo-aperture input {
+  width: 240px;
+  accent-color: #363636;
+  cursor: pointer;
+}
+
+.demo-aperture-value {
+  min-width: 3.2em;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
 .demo-controls .button.is-active {
   background: #363636;
   border-color: #363636;
