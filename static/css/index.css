@@ -106,6 +106,15 @@ body {
   margin: 0.25rem;
 }
 
+.icon-hf {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask: url("../images/huggingface.svg") center / contain no-repeat;
+  mask: url("../images/huggingface.svg") center / contain no-repeat;
+}
+
 .publication-links .is-soon {
   opacity: 0.55;
   cursor: default;
