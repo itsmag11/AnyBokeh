@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=51">
+  <link rel="stylesheet" href="static/css/index.css?v=52">
   <script defer src="static/js/demo.js?v=9"></script>
   <script defer src="static/js/method.js?v=3"></script>
   <script defer src="static/js/stage1.js?v=2"></script>
@@ -37,6 +37,7 @@
   <div class="topnav-inner">
     <a class="topnav-brand" href="#">AnyBokeh</a>
     <div class="topnav-links">
+      <a href="#video">Video</a>
       <a href="#demo-section">Demo</a>
       <a href="#method-section">Method</a>
       <a href="#BibTeX">BibTeX</a>
@@ -130,8 +131,31 @@
   </div>
 </section>
 
-<section class="section section-tint" id="demo-section">
-  <div class="container is-max-desktop">
+<section class="section section-tint">
+  <div class="container is-max-desktop" id="video">
+    <p class="eyebrow">Video</p>
+    <h2 class="title is-3 has-text-centered">AnyBokeh in Action</h2>
+    <p class="has-text-centered section-subtitle">
+      A quick look at any-to-any focus and aperture editing from a single input photo.
+    </p>
+    <figure class="video-card">
+      <div class="video-frame">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="static/images/video_poster.jpg"
+          aria-label="AnyBokeh video demo">
+          <source src="static/AnyBokeh_video_demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption class="video-caption">
+        Drag focus and change aperture — AnyBokeh re-renders the optical state without all-in-focus reconstruction.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="container is-max-desktop showcase-part" id="demo-section">
     <p class="eyebrow">Interactive Demo</p>
     <h2 class="title is-3 has-text-centered">
       Arbitrary Focus Point, Arbitrary Aperture
