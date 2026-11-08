@@ -1,6 +1,6 @@
 (function () {
   const ROOT = 'static/images/compare';
-  const VERSION = 'v=4';
+  const VERSION = 'v=6';
 
   const LABELS = {
     input: 'Input',
@@ -28,12 +28,10 @@
       name: 'Any-to-Any Editing',
       cases: [
         { id: '127_f5.0_127_f2.8', setting: 'f/5.0 → f/2.8', baselines: A2A, crop: [0.67, 0.3683, 0.3, 0.3] },
-        { id: '205_f4.0_205_f2.0', setting: 'f/4.0 → f/2.0', baselines: A2A, crop: [0.1713, 0.3433, 0.3, 0.3] },
+        { id: '205_f4.0_205_f2.0', setting: 'f/4.0 → f/2.0', baselines: A2A, crop: [0.425, 0.0333, 0.3, 0.3] },
         { id: '201_f11_201_f2.0', setting: 'f/11 → f/2.0', baselines: A2A, crop: [0.685, 0.64, 0.3, 0.3] },
         { id: '119_f13_119_f4.0', setting: 'f/13 → f/4.0', baselines: A2A, crop: [0.4312, 0.02, 0.3, 0.3] },
         { id: '51_f2.0_51_f8.0', setting: 'f/2.0 → f/8.0', baselines: A2A, crop: [0.685, 0.1983, 0.3, 0.3] },
-        { id: '66_f16_66_f2.5', setting: 'f/16 → f/2.5', baselines: A2A, crop: [0.3075, 0.26, 0.3, 0.3] },
-        { id: '25_f22_25_f2.0', setting: 'f/22 → f/2.0', baselines: A2A, crop: [0.1462, 0.0233, 0.3, 0.3] },
         { id: '186_f8.0_186_f14', setting: 'f/8.0 → f/14', baselines: A2A, crop: [0.685, 0.515, 0.3, 0.3] },
       ],
     },
@@ -47,20 +45,18 @@
         { id: '16_f2.0', setting: 'All-in-focus → f/2.0', baselines: BR, crop: [0.685, 0.2633, 0.3, 0.3] },
         { id: '24_f5.0', setting: 'All-in-focus → f/5.0', baselines: BR, crop: [0.31, 0.02, 0.3, 0.3] },
         { id: '4435_f1.8', setting: 'All-in-focus → f/1.8', baselines: BR, crop: [0.3475, 0.6317, 0.3, 0.3] },
-        { id: '25_f2.2', setting: 'All-in-focus → f/2.2', baselines: BR, crop: [0.685, 0.52, 0.3, 0.3] },
-        { id: '2_f2.0', setting: 'All-in-focus → f/2.0', baselines: BR, crop: [0.1237, 0.35, 0.3, 0.3] },
       ],
     },
     {
       id: 'deblur',
       name: 'Defocus Deblurring',
       cases: [
-        { id: '4602_bokeh_aif', setting: 'Bokeh → All-in-focus', baselines: ['drbnet', 'restormer'], crop: [0.5437, 0.02, 0.3, 0.3] },
+        { id: '4602_bokeh_aif', setting: 'Bokeh → All-in-focus', baselines: ['drbnet', 'restormer'], crop: [0.29, 0.0, 0.3, 0.3] },
         { id: '4416_bokeh_aif', setting: 'Bokeh → All-in-focus', baselines: ['drbnet', 'restormer'], crop: [0.1338, 0.2033, 0.3, 0.3] },
-        { id: '13_f5.6_aif', setting: 'f/5.6 → All-in-focus', baselines: DD, crop: [0.015, 0.32, 0.3, 0.3] },
-        { id: '12_f2.0_aif', setting: 'f/2.0 → All-in-focus', baselines: DD, crop: [0.2425, 0.6583, 0.3, 0.3] },
-        { id: '28_f7.1_aif', setting: 'f/7.1 → All-in-focus', baselines: DD, crop: [0.2025, 0.2517, 0.3, 0.3] },
-        { id: '8_f4.0_aif', setting: 'f/4.0 → All-in-focus', baselines: DD, crop: [0.1812, 0.25, 0.3, 0.3] },
+        { id: '13_f5.6_aif', setting: 'f/5.6 → All-in-focus', baselines: DD, crop: [0.08, 0.36, 0.3, 0.3] },
+        { id: '12_f2.0_aif', setting: 'f/2.0 → All-in-focus', baselines: DD, crop: [0.30, 0.52, 0.3, 0.3] },
+        { id: '28_f7.1_aif', setting: 'f/7.1 → All-in-focus', baselines: DD, crop: [0.0, 0.0, 0.3, 0.3] },
+        { id: '8_f4.0_aif', setting: 'f/4.0 → All-in-focus', baselines: DD, crop: [0.50, 0.20, 0.3, 0.3] },
       ],
     },
   ];
