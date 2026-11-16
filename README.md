@@ -27,7 +27,7 @@ S-Lab, Nanyang Technological University
 - [x] Release training code
 - [x] Release UnrealBokeh dataset
 
-## Contents
+## 📑 Contents
 
 - [Preparation](#preparation)
   - [Environment Setup](#environment-setup)
