@@ -6,7 +6,7 @@ from diffusers.utils import load_image
 
 from inference_stage1 import predict_coc_and_disparity
 from inference_stage2 import render_bokeh
-from utils import add_bokeh_args, get_bokeh_scale, get_stage_dir, load_pipeline
+from utils import add_bokeh_args, get_bokeh_scale, get_stage_dir, load_pipeline, lora_weight_name
 
 
 def parse_args():
@@ -18,7 +18,7 @@ def parse_args():
         "--anybokeh_model_name_or_path",
         type=str,
         default="itsmag11/AnyBokeh",
-        help="Hub repo id or local folder with the stage1/ and stage2/ checkpoints.",
+        help="Hub repo id or local folder. Checkpoint files are named stage1-* and stage2-*.",
     )
     parser.add_argument("--output_path", type=str, required=True)
     parser.add_argument("--stage1_resolution", type=int, default=512)
@@ -42,7 +42,7 @@ def main(args):
     # Both stages share the same FLUX.1-Fill-dev backbone, so only the LoRA is swapped in between.
     pipe = load_pipeline(args.pretrained_model_name_or_path)
 
-    pipe.load_lora_weights(stage1_dir, weight_name="pytorch_lora_weights.safetensors")
+    pipe.load_lora_weights(stage1_dir, weight_name=lora_weight_name("stage1"))
     pipe.vae.enable_tiling()
     coc, disp = predict_coc_and_disparity(
         pipe,
@@ -57,7 +57,7 @@ def main(args):
     pipe.vae.disable_tiling()
     torch.cuda.empty_cache()
 
-    pipe.load_lora_weights(stage2_dir, weight_name="pytorch_lora_weights.safetensors")
+    pipe.load_lora_weights(stage2_dir, weight_name=lora_weight_name("stage2"))
     result = render_bokeh(
         pipe,
         stage2_dir,

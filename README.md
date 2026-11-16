@@ -24,8 +24,8 @@ S-Lab, Nanyang Technological University
 ## 📋 TODO
 
 - [x] Release inference code and pretrained checkpoints
-- [ ] Release training code
-- [ ] Release UnrealBokeh dataset
+- [x] Release training code
+- [x] Release UnrealBokeh dataset
 
 ## 🛠️ Preparation
 
@@ -40,14 +40,25 @@ conda activate anybokeh
 pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
 
 # Install dependencies
-pip install diffusers==0.37.0 transformers==5.3.0 peft==0.18.1 accelerate==1.13.0 huggingface_hub==1.6.0
+pip install diffusers==0.37.0 transformers==5.3.0 peft==0.18.1 accelerate==1.13.0 huggingface_hub==1.6.0 scipy opencv-python
 ```
 
 ### Checkpoints
 
 AnyBokeh is built on [FLUX.1-Fill-dev](https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev), which is gated: accept its license on the model page and run `hf auth login`. The base model and our [checkpoints](https://huggingface.co/itsmag11/AnyBokeh) are then downloaded automatically at the first run.
 
-For offline use, download our checkpoints with `hf download itsmag11/AnyBokeh --local-dir checkpoints` and pass `--anybokeh_model_name_or_path checkpoints`.
+For offline use, download our checkpoints with `hf download itsmag11/AnyBokeh --local-dir checkpoints` and pass `--anybokeh_model_name_or_path checkpoints`. The files are in that folder's root: `stage1-pytorch_lora_weights.safetensors`, `stage1-prompt_embeds.pt`, `stage1-pooled_prompt_embeds.pt`, and the same three names with the `stage2-` prefix.
+
+### Dataset
+
+Training uses [UnrealBokeh](https://huggingface.co/datasets/itsmag11/UnrealBokeh). Download it and pass that directory as `--dataset_root`:
+
+```bash
+hf download itsmag11/UnrealBokeh --repo-type dataset --local-dir path/to/UnrealBokeh
+cd path/to/UnrealBokeh && for f in data/*.zip; do unzip "$f"; done
+```
+
+`--data_file` and `--val_data_file` are JSONL paths inside this directory, for example `data_lists/stage1_train.jsonl`. Paths in those lists start with `data/`.
 
 ## 🚀 Inference
 
@@ -119,6 +130,89 @@ python inference_stage2.py \
     --bokeh_scale SCALE \
     --output_path path/to/output.jpg
 ```
+
+## 🏋️ Training
+
+Training follows the same two LoRAs used at inference. Both stages are [FLUX.1-Fill-dev](https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev) LoRAs (rank 32) trained with flow matching. Launch with `accelerate`.
+
+### Stage 1
+
+Stage 1 learns to predict a signed CoC map and a disparity map. Batch size 2. Weighted loss defaults: CoC alpha 10, background boost 1.5, disparity alpha 10.
+
+```bash
+accelerate launch train_stage1.py \
+    --dataset_root path/to/UnrealBokeh \
+    --data_file data_lists/stage1_train.jsonl \
+    --val_data_file data_lists/stage1_val.jsonl \
+    --output_dir outputs/stage1 \
+    --train_batch_size 2 \
+    --gradient_accumulation_steps 16 \
+    --max_train_steps 100000 \
+    --checkpointing_steps 1000 \
+    --validation_steps 1000 \
+    --allow_tf32 \
+    --dataloader_num_workers 8 \
+    --seed 0
+```
+
+
+
+### Stage 2
+
+Stage 2 is pretrained on ground-truth CoC, then optionally finetuned on Stage 1 predictions.
+
+#### Pretraining
+
+```bash
+accelerate launch train_stage2.py \
+    --dataset_root path/to/UnrealBokeh \
+    --data_file data_lists/stage2_train.jsonl \
+    --val_data_file data_lists/stage2_val.jsonl \
+    --output_dir outputs/stage2 \
+    --train_batch_size 1 \
+    --gradient_accumulation_steps 16 \
+    --max_train_steps 100000 \
+    --checkpointing_steps 1000 \
+    --validation_steps 1000 \
+    --offload \
+    --allow_tf32 \
+    --dataloader_num_workers 8 \
+    --seed 0
+```
+
+Each entry in Stage 2 data list is one source/target pair.
+
+#### Finetuning
+
+Save each source image's CoC and disparity with `inference_stage1.py`, then write a new pair list with each entry as:
+
+```json
+{
+  "rgb_file": "path/to/UnrealBokeh/data/scene_01/view_034/rgb/view_034_f27_ap10_fd117.jpeg",
+  "target_rgb_file": "path/to/UnrealBokeh/data/scene_01/view_034/rgb/view_034_f27_ap10_fd49.jpeg",
+  "coc_file": "stage1/view_034_f27_ap10_fd117_coc.npy",
+  "disp_file": "stage1/view_034_f27_ap10_fd117_disp.npy",
+  "focus_x": 904,
+  "focus_y": 613,
+  "bokeh_scale": 1.0
+}
+```
+
+You can reuse the `data_lists/stage2_train.jsonl` pairs but point the `coc_file` and `disp_file` to corresponding Stage 1 predictions. `bokeh_scale` is `aperture / target_aperture` from that pair. `focus_x` and `focus_y` are the coordinates of a pixel at `target_focus_distance_cm`. This can be estimated from ground truth depth maps (in millimeters, so match `target_focus_distance_cm * 10`).
+
+```bash
+accelerate launch train_stage2_finetune.py \
+    --data_file path/to/stage2_finetune_train.json \
+    --val_data_file path/to/stage2_finetune_val.json \
+    --output_dir outputs/stage2-finetune \
+    --resume_from_checkpoint path/to/stage2/pretrained/checkpoint-<step> \
+    --train_batch_size 1 \
+    --gradient_accumulation_steps 16 \
+    --offload \
+    --allow_tf32 \
+    --seed 0
+```
+
 
 ## 📖 Citation
 

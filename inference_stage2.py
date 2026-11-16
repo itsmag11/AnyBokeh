@@ -16,6 +16,7 @@ from utils import (
     get_tile_offsets,
     load_pipeline,
     load_prompt_embeds,
+    lora_weight_name,
     prepare_stage2_inputs,
     resize_map,
     upsample_to_min_size,
@@ -33,7 +34,7 @@ def parse_args():
         "--anybokeh_model_name_or_path",
         type=str,
         default="itsmag11/AnyBokeh",
-        help="Hub repo id or local folder with the stage1/ and stage2/ checkpoints.",
+        help="Hub repo id or local folder. Checkpoint files are named stage1-* and stage2-*.",
     )
     parser.add_argument("--output_path", type=str, required=True)
     parser.add_argument("--resolution", type=int, default=512)
@@ -53,7 +54,7 @@ def render_bokeh(
         raise ValueError(f"Focus point {tuple(focus_xy)} is outside the {w}x{h} image.")
 
     target_coc = compute_target_coc(coc, disp, focus_xy, bokeh_scale)
-    prompt_embeds, pooled_prompt_embeds = load_prompt_embeds(prompt_embeds_dir)
+    prompt_embeds, pooled_prompt_embeds = load_prompt_embeds(prompt_embeds_dir, "stage2")
 
     # The model works on resolution x resolution tiles, so large images are split and blended back.
     image, coc, target_coc, scale = upsample_to_min_size(image, coc, target_coc, resolution)
@@ -89,7 +90,7 @@ def render_bokeh(
 def main(args):
     stage_dir = get_stage_dir(args.anybokeh_model_name_or_path, "stage2")
     pipe = load_pipeline(args.pretrained_model_name_or_path)
-    pipe.load_lora_weights(stage_dir, weight_name="pytorch_lora_weights.safetensors")
+    pipe.load_lora_weights(stage_dir, weight_name=lora_weight_name("stage2"))
 
     result = render_bokeh(
         pipe,

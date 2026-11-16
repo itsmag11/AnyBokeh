@@ -4,7 +4,7 @@ import os
 import numpy as np
 import torch
 
-from utils import decode_coc, get_stage_dir, load_pipeline, load_prompt_embeds, prepare_stage1_inputs, unpad_and_resize
+from utils import decode_stage1_coc, get_stage_dir, load_pipeline, load_prompt_embeds, lora_weight_name, prepare_stage1_inputs, unpad_and_resize
 
 
 def parse_args():
@@ -15,7 +15,7 @@ def parse_args():
         "--anybokeh_model_name_or_path",
         type=str,
         default="itsmag11/AnyBokeh",
-        help="Hub repo id or local folder with the stage1/ and stage2/ checkpoints.",
+        help="Hub repo id or local folder. Checkpoint files are named stage1-* and stage2-*.",
     )
     parser.add_argument("--coc_save_path", type=str, required=True)
     parser.add_argument("--disp_save_path", type=str, required=True)
@@ -26,8 +26,8 @@ def parse_args():
 
 
 @torch.no_grad()
-def predict_coc_and_disparity(pipe, prompt_embeds_dir, image_path, resolution, num_inference_steps, seed):
-    prompt_embeds, pooled_prompt_embeds = load_prompt_embeds(prompt_embeds_dir)
+def predict_coc_and_disparity(pipe, checkpoint_dir, image_path, resolution, num_inference_steps, seed):
+    prompt_embeds, pooled_prompt_embeds = load_prompt_embeds(checkpoint_dir, "stage1")
     image, mask, info = prepare_stage1_inputs(image_path, resolution)
     output = pipe(
         prompt_embeds=prompt_embeds,
@@ -44,7 +44,7 @@ def predict_coc_and_disparity(pipe, prompt_embeds_dir, image_path, resolution, n
     output = np.array(output)
 
     r = resolution
-    coc = unpad_and_resize(decode_coc(output[:, r:2 * r]), info) / info["scale"]
+    coc = unpad_and_resize(decode_stage1_coc(output[:, r:2 * r]), info) / info["scale"]
     disp = unpad_and_resize(output[:, 2 * r:].astype(np.float32) / 255.0, info)
     return coc, disp
 
@@ -52,7 +52,7 @@ def predict_coc_and_disparity(pipe, prompt_embeds_dir, image_path, resolution, n
 def main(args):
     stage_dir = get_stage_dir(args.anybokeh_model_name_or_path, "stage1")
     pipe = load_pipeline(args.pretrained_model_name_or_path)
-    pipe.load_lora_weights(stage_dir, weight_name="pytorch_lora_weights.safetensors")
+    pipe.load_lora_weights(stage_dir, weight_name=lora_weight_name("stage1"))
     pipe.vae.enable_tiling()
 
     coc, disp = predict_coc_and_disparity(
