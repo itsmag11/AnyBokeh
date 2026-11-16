@@ -27,6 +27,24 @@ S-Lab, Nanyang Technological University
 - [x] Release training code
 - [x] Release UnrealBokeh dataset
 
+## Contents
+
+- [Preparation](#preparation)
+  - [Environment Setup](#environment-setup)
+  - [Checkpoints](#checkpoints)
+  - [Dataset](#dataset)
+- [Inference](#inference)
+  - [End-to-End (Stage 1 + Stage 2)](#end-to-end-stage-1--stage-2)
+  - [Picking the Focus Point](#picking-the-focus-point)
+  - [Running the Stages Separately](#running-the-stages-separately)
+- [Training](#training)
+  - [Stage 1](#stage-1)
+  - [Stage 2](#stage-2)
+    - [Pretraining](#pretraining)
+    - [Finetuning](#finetuning)
+- [Citation](#citation)
+- [License](#license)
+
 ## 🛠️ Preparation
 
 ### Environment Setup
