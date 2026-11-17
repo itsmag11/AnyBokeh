@@ -8,9 +8,10 @@ S-Lab, Nanyang Technological University
 
 **NeurIPS 2026**
 
-[![Conference](https://img.shields.io/badge/NeurIPS-2026-4b44ce)](https://neurips.cc/)
 [![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b)](https://arxiv.org/abs/2606.31959)
 [![Project Page](https://img.shields.io/badge/Project-Page-green)](https://itsmag11.github.io/AnyBokeh/)
+[![Checkpoints](https://img.shields.io/badge/Checkpoints-HuggingFace-ffd21e)](https://huggingface.co/itsmag11/AnyBokeh)
+[![Dataset](https://img.shields.io/badge/Dataset-UnrealBokeh-blue)](https://huggingface.co/datasets/itsmag11/UnrealBokeh)
 [![GitHub Stars](https://img.shields.io/github/stars/itsmag11/AnyBokeh?style=social)](https://github.com/itsmag11/AnyBokeh)
 
 </div>
