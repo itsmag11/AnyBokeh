@@ -115,20 +115,6 @@ body {
   mask: url("../images/huggingface.svg") center / contain no-repeat;
 }
 
-.publication-links .is-soon {
-  opacity: 0.55;
-  cursor: default;
-}
-
-.soon-tag {
-  margin-left: 0.4rem;
-  padding: 0 0.45rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.2);
-  font-size: 0.7rem;
-  line-height: 1.4;
-}
-
 .star-cta {
   margin-top: 2rem;
   text-align: center;
